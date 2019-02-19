@@ -31,7 +31,7 @@ class Controller
     void executeCB(const robot_arm_aansturing::setPoseGoalConstPtr &goal)
     {
         std::cout << "Executing someting" <<std::endl;
-        result_.finalPose = "yeay";
+        result_.finalPose = 1;
         as_.setSucceeded(result_);
 
     }

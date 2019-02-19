@@ -41,7 +41,7 @@ int main(int argc,char**argv)
     ac.waitForServer();
 
     robot_arm_aansturing::setPoseGoal goal;
-    goal.pos = "test";
+    goal.pos = 1;
 
     ac.sendGoal(goal);
 

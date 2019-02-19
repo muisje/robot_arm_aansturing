@@ -1,9 +1,9 @@
 #goal definition
-string pos
+short pos
 
 ---
 #result definition
-string finalPose
+short finalPose
 
 ---
 #feedback
