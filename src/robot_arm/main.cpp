@@ -17,10 +17,19 @@ int main(int argc,char**argv)
     // Start the node resource managers (communication, time, etc)
     ros::start();
 
-    SSC32U servoController("/dev/ttyUSB0");
+    SSC32U servoController("/dev/ttyUSB0", 115200);
 
     //Set position ofset with pulse -100 to 100 is around 15 degrees
-    // servoController.setPositionOffset(joint::SHOULDER, -100);
+    
+    //0 is no ofset default baudrate
+
+    //1  baudrate 115200 (green and red led) and doing weird things base is 850 (pulse) right up
+
+    // //2 default baudrate
+    // servoController.setPositionOffset(joint::BASE, 100);
+    // servoController.setPositionOffset(joint::SHOULDER, 80);
+    // servoController.setPositionOffset(joint::ELBOW, -100);
+    // servoController.setPositionOffset(joint::WRIST, 70);
 
 
     servoController.move(joint::BASE, 0);
@@ -30,16 +39,17 @@ int main(int argc,char**argv)
     servoController.move(joint::GRIPPER, 0, 0);
     servoController.move(joint::WRIST_ROTATE, 0, 0);
 
-    std::this_thread::sleep_for(2s);
+    // std::this_thread::sleep_for(2s);
     
-    servoController.move(joint::BASE, 0, 0, 2000);
-    servoController.move(joint::SHOULDER, 30, 0, 2000);
-    servoController.move(joint::ELBOW, 30, 0, 2000);
-    servoController.move(joint::WRIST, -30, 0, 2000);
-    servoController.move(joint::GRIPPER, 0, 0, 2000);
-    servoController.move(joint::WRIST_ROTATE, 0, 2000);
+    // //READY
+    // servoController.move(joint::BASE, 0, 0, 2000);
+    // servoController.move(joint::SHOULDER, 30, 0, 2000);
+    // servoController.move(joint::ELBOW, 30, 0, 2000);
+    // servoController.move(joint::WRIST, -30, 0, 2000);
+    // servoController.move(joint::GRIPPER, 0, 0, 2000);
+    // servoController.move(joint::WRIST_ROTATE, 0, 2000);
 
-    std::this_thread::sleep_for(8s);
+    std::this_thread::sleep_for(2s);
     //Should go straight up with this
     servoController.move(joint::BASE, 0, 0, 2000);
     servoController.move(joint::SHOULDER, 0, 0, 2000);
@@ -48,7 +58,7 @@ int main(int argc,char**argv)
     servoController.move(joint::GRIPPER, 0, 0, 2000);
     servoController.move(joint::WRIST_ROTATE, 0, 0, 2000);
 
-    std::this_thread::sleep_for(10s);
+    std::this_thread::sleep_for(5s);
 
     servoController.move(joint::BASE, 0, 0, 2000);
     servoController.move(joint::SHOULDER, 45, 0, 2000);
