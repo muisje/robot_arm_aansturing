@@ -1,0 +1,10 @@
+#goal definition
+short pos
+
+---
+#result definition
+short finalPose
+
+---
+#feedback
+int32 procesStatus

@@ -1,6 +1,9 @@
 #include "SSC32U.hpp"
 #include <ros/ros.h>
 
+
+#include "Controller.hpp"
+
 #include <chrono>
 #include <thread>
 
@@ -12,12 +15,17 @@ int main(int argc,char**argv)
 {   
     using namespace std::chrono_literals;
 
+    
     // Announce this program to the ROS master as a "node" called "hello_world_node"
-    ros::init(argc,argv,"hello_robot_arm_node");
+    ros::init(argc,argv,"robot_arm");
     // Start the node resource managers (communication, time, etc)
-    ros::start();
 
-    SSC32U servoController("/dev/ttyUSB0", 115200);
+    Controller c("robot_arm");
+    
+
+   // ros::start();
+
+    // SSC32U servoController("/dev/ttyUSB0");
 
     //Set position ofset with pulse -100 to 100 is around 15 degrees
     
@@ -67,12 +75,11 @@ int main(int argc,char**argv)
     servoController.move(joint::GRIPPER, 0, 0, 2000);
     servoController.move(joint::WRIST_ROTATE, 0, 0, 2000);
 
-
     ROS_INFO_STREAM("Hello, robot arm!");
     // Process ROS callbacks until receiving a SIGINT (ctrl-c)
     ros::spin();// Stop the node's resources
 
-    ros::shutdown();
+   //ros::shutdown();
 
     // Exit tranquillyret
     return 0;
