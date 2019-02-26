@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(robot_arm_aansturing)
 
 find_package(catkin REQUIRED COMPONENTS
+  genmsg
   actionlib
   actionlib_msgs
   roscpp
@@ -16,10 +17,6 @@ add_action_files(
 
 generate_messages(
   DEPENDENCIES actionlib_msgs std_msgs  # Or other packages containing msgs
-)
-
-catkin_package(
-  CATKIN_DEPENDS actionlib_msgs
 )
 
 catkin_package(
