@@ -5,13 +5,15 @@
 SSC32U::SSC32U(std::string portName, unsigned int baudRate)
 {
     boost::asio::io_service io;
-    port = boost::asio::serial_port(io, portName);
+
+    port = new boost::asio::serial_port(io, portName);
     port->set_option(boost::asio::serial_port_base::baud_rate(baudRate));
 }
 
 SSC32U::~SSC32U()
 {
     port->close();
+    delete port;
 }
 
 void SSC32U::move(uint8_t pin, int16_t position, uint16_t speed, uint16_t time)

@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(robot_arm_aansturing)
 
 find_package(catkin REQUIRED COMPONENTS
+  genmsg
   actionlib
   actionlib_msgs
   roscpp
@@ -19,10 +20,6 @@ generate_messages(
 )
 
 catkin_package(
-  CATKIN_DEPENDS actionlib_msgs
-)
-
-catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES beginner_tutorials
 CATKIN_DEPENDS roscpp rospy actionlib_msgs
@@ -34,7 +31,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(robot_arm src/robot_arm/main.cpp src/robot_arm/SSC32U.cpp)
+add_executable(robot_arm src/robot_arm/main.cpp src/robot_arm/SSC32U.cpp src/robot_arm/AL5D.cpp)
 target_link_libraries(robot_arm ${catkin_LIBRARIES})
 
 add_dependencies(

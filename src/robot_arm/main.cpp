@@ -1,11 +1,16 @@
 #include "SSC32U.hpp"
+<<<<<<< HEAD
 #include <ros/ros.h>
 
+=======
+#include "AL5D.hpp"
+>>>>>>> 7fd75f972a25e3c1c605c99d5e5f3d8272d26854
 #include "Controller.hpp"
-
+#include <ros/ros.h>
 #include <chrono>
 #include <thread>
 
+<<<<<<< HEAD
 enum joint
 {
     BASE = 0,
@@ -17,11 +22,14 @@ enum joint
 };
 
 // Standard C++ entry point
+=======
+>>>>>>> 7fd75f972a25e3c1c605c99d5e5f3d8272d26854
 
 int main(int argc, char **argv)
 {
     using namespace std::chrono_literals;
 
+<<<<<<< HEAD
     // Announce this program to the ROS master as a "node" called "hello_world_node"
     ros::init(argc, argv, "robot_arm");
     // Start the node resource managers (communication, time, etc)
@@ -85,6 +93,33 @@ int main(int argc, char **argv)
 
     //ros::shutdown();
 
+=======
+    ros::init(argc,argv,"robot_arm");
+
+    ros::start();
+
+    // SSC32U servoController("/dev/ttyUSB0");
+    SSC32U servoController("/dev/ttyUSB0", 115200);
+
+    AL5D robotArm(servoController);
+
+    robotArm.gotoPosition(e_position::PARK);
+    std::this_thread::sleep_for(3s);
+    
+    robotArm.gotoPosition(e_position::READY, 0, 2300);
+    std::this_thread::sleep_for(5s);
+    
+    robotArm.gotoPosition(e_position::STRAIGHT_UP, 0, 500);
+    std::this_thread::sleep_for(5s);
+
+    robotArm.gotoPosition(e_position::PARK, 0, 2300);
+    std::this_thread::sleep_for(5s);
+    
+    
+    ROS_INFO_STREAM("Hello, robot arm!");
+    ros::spin();// Stop the node's resources
+
+>>>>>>> 7fd75f972a25e3c1c605c99d5e5f3d8272d26854
     // Exit tranquillyret
     return 0;
 }
