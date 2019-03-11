@@ -1,9 +1,9 @@
 #goal definition
-short pos
+int32 pos
 
 ---
 #result definition
-short finalPose
+int32 finalPose
 
 ---
 #feedback
