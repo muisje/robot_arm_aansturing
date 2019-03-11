@@ -7,9 +7,10 @@
 #include <boost/assign/list_of.hpp> // for 'map_list_of()'
 #include <boost/assert.hpp> 
 
+// Standard C++ entry point
 
-int main(int argc,char**argv)
-{   
+int main(int argc, char **argv)
+{
     using namespace std::chrono_literals;
 
     ros::init(argc,argv,"robot_arm");
