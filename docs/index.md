@@ -10,10 +10,15 @@ draft
 ## vragen
 
 * Waar willen we de queu
+  * instruction handler
+* Hoe kunnen we de posities halen als we binnen de range of motion moeten blijven
+  * per gewrichten een min en max
 
 ## todo
 
-* [ ] noodstop
+* [ ] noodstop && feedback positie
+* [ ] range of motion beperking apendix A
+* [ ] Servo begrenzing
 * [ ] integratie ros met hld robot arm
 * [ ] dll lld
 * [ ] QoS
@@ -26,3 +31,37 @@ draft
 * [ ] timing diagram
 * [ ] rosout info
 * [ ] precondities checken??
+
+
+## REQ
+
+* [x] SA01
+* [x] SA02
+* [ ] SA03 <- timing diagram
+* [x] PO01
+* [x] PO02
+* [x] PO03
+* [ ] VE01 - 
+* [ ] VE02 - M
+* [ ] VE03 - deels niet haalbaar (documenteren)
+* [ ] INF01 -
+* [ ] INF02
+* [ ] INF03
+* [ ] EX01
+* [ ] EX02
+* [ ] SY01
+* [ ] SY02
+* [ ] SY03
+* [ ] SY04
+* [ ] US01
+* [ ] US02
+* [ ] QS01
+* [ ] QS02
+* [ ] IM01 - integratie ontbreekt = H
+* [ ] IM02 - dll bestaat nog niet
+* [X] IM03
+* [ ] IM04
+* [X] IM05
+* [ ] IM06 - nog niet gespecificeerd
+* [ ] DE01
+* [ ] DE02
