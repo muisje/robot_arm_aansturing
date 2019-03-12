@@ -15,6 +15,11 @@ add_action_files(
   FILES setPose.action
 )
 
+add_action_files(
+  DIRECTORY action
+  FILES setCostumPose.action
+)
+
 generate_messages(
   DEPENDENCIES actionlib_msgs std_msgs  # Or other packages containing msgs
 )
@@ -31,7 +36,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(robot_arm src/robot_arm/main.cpp src/robot_arm/SSC32U.cpp src/robot_arm/AL5D.cpp)
+add_executable(robot_arm src/robot_arm/main.cpp src/robot_arm/SSC32U.cpp src/robot_arm/AL5D.cpp src/robot_arm/Controller.cpp)
 target_link_libraries(robot_arm ${catkin_LIBRARIES})
 
 add_dependencies(
