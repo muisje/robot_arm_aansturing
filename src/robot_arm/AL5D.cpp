@@ -59,6 +59,7 @@ bool AL5D::gotoPosition(enum::e_position position, uint16_t speed, uint16_t time
             break;
     
         default:
+            return false;
             break;
     }
 }
