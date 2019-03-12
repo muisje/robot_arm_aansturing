@@ -8,15 +8,47 @@
 #include <boost/assert.hpp> 
 
 // Standard C++ entry point
+using namespace std::chrono_literals;
+
 
 int main(int argc, char **argv)
 {
-    using namespace std::chrono_literals;
-
-    ros::init(argc,argv,"robot_arm");
-
+    ros::init(argc,argv,"robot");
     ros::start();
 
+    // CODE HENDRIK
+    Controller c("robot_arm","test");
+    
+
+        std::map<e_joint, Range> jointRanges = boost::assign::map_list_of
+    (e_joint::BASE, Range{-90, 0}) (e_joint::SHOULDER, Range{-30, 90}) (e_joint::ELBOW, Range{0, 90})
+    (e_joint::WRIST, Range{-90, 90}) (e_joint::WRIST_ROTATE, Range{-90, 90});
+
+
+    //If user used a argument for the serial 
+    if(argc > 1)
+    {
+        SSC32U servoController("/dev/ttyUSB0", std::stoi(argv[1]));
+
+        AL5D robotArm(servoController, jointRanges);
+
+        robotArm.gotoPosition(e_position::PARK);
+        std::this_thread::sleep_for(3s);
+        
+        robotArm.gotoPosition(e_position::READY, 0, 2300);
+        std::this_thread::sleep_for(5s);
+        
+        robotArm.gotoPosition(e_position::STRAIGHT_UP, 0, 500);
+        std::this_thread::sleep_for(5s);
+
+        robotArm.gotoPosition(e_position::PARK, 0, 2300);
+        std::this_thread::sleep_for(5s);
+    }
+
+
+
+    //      CODE MOURITS
+    /*
     // SSC32U servoController("/dev/ttyUSB0");
     SSC32U servoController("/dev/ttyUSB1", 115200);
 
@@ -57,6 +89,8 @@ int main(int argc, char **argv)
     std::this_thread::sleep_for(5s);
     
     
+    */
+
     ROS_INFO_STREAM("Hello, robot arm!");
     ros::spin();// Stop the node's resources
 

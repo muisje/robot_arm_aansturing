@@ -4,10 +4,12 @@
 
 SSC32U::SSC32U(std::string portName, unsigned int baudRate)
 {
+    
     boost::asio::io_service io;
 
     port = new boost::asio::serial_port(io, portName);
     port->set_option(boost::asio::serial_port_base::baud_rate(baudRate));
+    
 }
 
 SSC32U::~SSC32U()
@@ -73,4 +75,5 @@ void SSC32U::sendCommand(uint8_t pin, uint16_t pulseWidth, uint16_t speed, uint1
     }
     command += CR;
     port->write_some(boost::asio::buffer(command.data(), command.size()));
+
 }
