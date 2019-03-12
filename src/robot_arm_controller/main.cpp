@@ -56,8 +56,7 @@ struct parsString
             if (imput[idx] == ',')
             {
                 std::string substr = imput.substr(previousIdx, idx - previousIdx);
-                int test = std::stoi(substr);
-                values.push_back(test);
+                values.push_back(std::stoi(substr));
                 previousIdx = idx + 1;
             }
         }
