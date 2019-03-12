@@ -36,7 +36,7 @@ void SSC32U::move(uint8_t pin, int16_t position, uint16_t speed, uint16_t time)
         position = min_pos;
     }
 
-    int pos_width = abs(min_pos) + abs(max_pos);
+    int pos_width = max_pos - min_pos;
     int pulse_diff = max_pulse - min_pulse;
     int zero_pulse = round(float(pulse_diff) / 2.0) + min_pulse;
     int pulse_per_pos = round(float(pulse_diff) / float(pos_width));
