@@ -1,38 +1,35 @@
 #include <actionlib/server/simple_action_server.h>
 #include <robot_arm_aansturing/setPoseAction.h>
+#include <robot_arm_aansturing/setCostumPoseAction.h>
 
 class Controller
 {
   protected:
   
-    ros::NodeHandle nh_;
-    actionlib::SimpleActionServer<robot_arm_aansturing::setPoseAction> as_;
 
-    std::string action_name_;
+    //Action setPose
+    robot_arm_aansturing::setPoseFeedback setPose_feedback;
+    robot_arm_aansturing::setPoseResult setPose_result;
 
+    ros::NodeHandle setPose_nh;
+    actionlib::SimpleActionServer<robot_arm_aansturing::setPoseAction> setPose_as;
 
-    //Action
-    robot_arm_aansturing::setPoseFeedback feedback_;
-    robot_arm_aansturing::setPoseResult result_;
+    std::string setPose_name;
 
+    //Action setCostumPose
+    robot_arm_aansturing::setCostumPoseFeedback setCostumPose_feedback;
+    robot_arm_aansturing::setCostumPoseResult setCostumPose_result;
+
+    ros::NodeHandle setCostumPose_nh;
+    actionlib::SimpleActionServer<robot_arm_aansturing::setCostumPoseAction> setCostumPose_as;
+
+    std::string setCostumPose_name;
 
   public:
-    Controller(std::string name) : 
-    as_(nh_, name, boost::bind(&Controller::executeCB, this, _1), false),
-    action_name_(name)
-    {
-        as_.start();
-    }
+    Controller(std::string name, std::string aname);
+    ~Controller(void);
 
-    ~Controller(void)
-    {
-    }
+    void executePose(const robot_arm_aansturing::setPoseGoalConstPtr &goal);
+    void executeCostumPose(const robot_arm_aansturing::setCostumPoseGoalConstPtr &goal);
 
-    void executeCB(const robot_arm_aansturing::setPoseGoalConstPtr &goal)
-    {
-        std::cout << "Executing someting" <<std::endl;
-        result_.finalPose = 1;
-        as_.setSucceeded(result_);
-
-    }
 };

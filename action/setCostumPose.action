@@ -1,0 +1,15 @@
+#goal definition
+int32 a_Base
+int32 a_Shoulder
+int32 a_Elbow
+int32 a_Wrist
+int32 a_Gripper
+int32 a_rist
+
+---
+#result definition
+int32 finalPose
+
+---
+#feedback
+int32 procesStatus
