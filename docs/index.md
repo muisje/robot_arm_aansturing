@@ -16,14 +16,15 @@ draft
 
 ## todo
 
-* [ ] noodstop && feedback positie
-* [ ] range of motion beperking apendix A
-* [ ] Servo begrenzing
+* [ ] noodstop && feedback positie -M
+* [x] range of motion beperking apendix A
+* [ ] meerdere robot armen posities werkend.
+* [x] Servo begrenzing
 * [ ] integratie ros met hld robot arm
-* [ ] dll lld
+* [ ] dll lld -M
 * [ ] QoS
 * [ ] doxygen
-* [ ] sequence diagram
+* [ ] sequence diagram - M
 * [ ] protocol state machine
 * [ ] use cases
 * [ ] component diagram
@@ -41,7 +42,7 @@ draft
 * [x] PO01
 * [x] PO02
 * [x] PO03
-* [ ] VE01 - 
+* [ ] VE01 -
 * [ ] VE02 - M
 * [ ] VE03 - deels niet haalbaar (documenteren)
 * [ ] INF01 -
