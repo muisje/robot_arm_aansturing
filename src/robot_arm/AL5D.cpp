@@ -20,7 +20,6 @@ bool AL5D::validateJointRanges( const std::map<e_joint, int16_t> position)
         {
             if ( value.second < jointRange->second.min || value.second > jointRange->second.max )
             {
-                std::cout << value.second << "<" << jointRange->second.min << ">" << jointRange->second.max << std::endl;
                 return false;
             }
         }
