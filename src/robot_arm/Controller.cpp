@@ -17,8 +17,27 @@ Controller::~Controller(void)
 
 void Controller::executePose(const robot_arm_aansturing::setPoseGoalConstPtr &goal)
 {
-    std::cout << "Executing someting" << std::endl;
-    std::cout << goal->g_pos <<std::endl;
+    if (goal->g_pos == e_poses::PARK)
+    {
+        std::cout << "MOVING TO PARK" <<std::endl;
+        //TODO ARM NAAR PARK BEWEGEN
+    }
+    else if (goal->g_pos == e_poses::READY)
+    {
+        std::cout << "MOVING TO READY" <<std::endl;
+        //TODO ARM NAAR READY BEWEGEN
+    }
+    else if (goal->g_pos == e_poses::STRAIGHT_UP)
+    {
+        std::cout << "MOVING TO STRAIGTUP" <<std::endl;
+        //TODO ARM NAAR STRAIGTUP BEWEGEN
+    }
+    else
+    {
+        //ERRROR GOOIEN
+    }
+
+    //TODO SET FINAL POSITION
     setPose_result.r_finalPose = 1;
     setPose_as.setSucceeded(setPose_result);
 }
@@ -26,13 +45,16 @@ void Controller::executePose(const robot_arm_aansturing::setPoseGoalConstPtr &go
 void Controller::executeCostumPose(const robot_arm_aansturing::setCostumPoseGoalConstPtr &goal)
 {
     std::cout << "Executing someting" << std::endl;
-    std::cout << goal->g_base        <<std::endl;
-    std::cout << goal->g_shoulder    <<std::endl;
-    std::cout << goal->g_elbow       <<std::endl;
-    std::cout << goal->g_wrist       <<std::endl;
-    std::cout << goal->g_gripper     <<std::endl;
-    std::cout << goal->g_wristRotate <<std::endl;
 
+    //TODO MOVE ARE TO POSITION BELOW
+    std::cout << goal->g_base << std::endl;
+    std::cout << goal->g_shoulder << std::endl;
+    std::cout << goal->g_elbow << std::endl;
+    std::cout << goal->g_wrist << std::endl;
+    std::cout << goal->g_gripper << std::endl;
+    std::cout << goal->g_wristRotate << std::endl;
+
+    //TODO SET FINAL POSITION
     setCostumPose_result.r_finalPose = 1;
     setCostumPose_as.setSucceeded(setCostumPose_result);
 }

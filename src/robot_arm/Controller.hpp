@@ -2,6 +2,9 @@
 #include <robot_arm_aansturing/setPoseAction.h>
 #include <robot_arm_aansturing/setCostumPoseAction.h>
 
+#ifndef CONTROLLER_HPP
+#define CONTROLLER_HPP
+
 class Controller
 {
   protected:
@@ -33,3 +36,5 @@ class Controller
     void executeCostumPose(const robot_arm_aansturing::setCostumPoseGoalConstPtr &goal);
 
 };
+
+#endif

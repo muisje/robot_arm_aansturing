@@ -32,11 +32,8 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(robot_arm src/robot_arm/main.cpp src/robot_arm/SSC32U.cpp src/robot_arm/AL5D.cpp src/robot_arm/Controller.cpp)
-
-#AUX_SOURCE_DIRECTORY(src/robot_arm SOURCE_ROBOT_ARM)
-#add_executable(robot_arm ${SOURCE_ROBOT_ARM})
-
+AUX_SOURCE_DIRECTORY(src/robot_arm SOURCE_ROBOT_ARM)
+add_executable(robot_arm ${SOURCE_ROBOT_ARM})
 target_link_libraries(robot_arm ${catkin_LIBRARIES})
 
 add_dependencies(
