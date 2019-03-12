@@ -6,8 +6,6 @@
 #include <boost/assign/list_of.hpp> // for 'map_list_of()'
 #include <boost/assert.hpp> 
 
-enum e_position {PARK, READY, STRAIGHT_UP};
-
 namespace POSITION_PRESET
 {
     const std::map<e_joint, int16_t> PARK = boost::assign::map_list_of

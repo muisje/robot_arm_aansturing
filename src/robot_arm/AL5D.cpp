@@ -27,12 +27,49 @@ bool AL5D::validateJointRanges( const std::map<e_joint, int16_t> position)
     return true;
 }
 
+void AL5D::stopAllMotorFunctions()
+{
+    this->gotoPosition(this->getCurrentPosition());
+}
+
+std::map<e_joint, int16_t> AL5D::getCurrentPosition()
+{
+    if (currentInstruction.duration == boost::posix_time::time_duration(0,0,0,0))
+    {
+        return currentInstruction.positionGoal;
+    }
+
+    boost::posix_time::time_duration diff = currentInstruction.startTime - boost::posix_time::microsec_clock::local_time();
+
+    if (diff >= currentInstruction.duration)
+    {
+        return currentInstruction.positionGoal;
+    }
+    else
+    {
+        double progress = currentInstruction.duration.fractional_seconds() / diff.fractional_seconds();
+        
+        std::map<e_joint, int16_t> currentPosition;
+        for (auto const & jointStart : currentInstruction.positionStart)
+        {
+            uint16_t currentJointPosition = round((currentInstruction.positionGoal[jointStart.first] - jointStart.second) * progress + jointStart.second);
+            currentPosition.insert(std::pair<e_joint, int16_t>(jointStart.first, currentJointPosition));
+        }
+        return currentPosition;
+    }
+}
+
 bool AL5D::gotoPosition(std::map<e_joint, int16_t> position, uint16_t speed, uint16_t time)
 {
     if(!this->validateJointRanges(position))
     {
         return false;
     }
+    this->currentInstruction.positionStart = this->currentInstruction.positionGoal;
+    this->currentInstruction.positionGoal = position;
+    this->currentInstruction.startTime = boost::posix_time::microsec_clock::local_time();
+    this->currentInstruction.duration = boost::posix_time::milliseconds(time);
+    
     servoController.move(e_joint::BASE, position[e_joint::BASE], speed, time);
     servoController.move(e_joint::SHOULDER, position[e_joint::SHOULDER], speed, time);
     servoController.move(e_joint::ELBOW, position[e_joint::ELBOW], speed, time);
@@ -40,26 +77,4 @@ bool AL5D::gotoPosition(std::map<e_joint, int16_t> position, uint16_t speed, uin
     servoController.move(e_joint::GRIPPER, position[e_joint::GRIPPER], speed, time);
     servoController.move(e_joint::WRIST_ROTATE, position[e_joint::WRIST_ROTATE], speed, time);
     return true;
-}
-    
-bool AL5D::gotoPosition(enum::e_position position, uint16_t speed, uint16_t time)
-{
-    switch (position)
-    {
-        case e_position::PARK:
-            return this->gotoPosition(POSITION_PRESET::PARK, speed, time);
-            break;
-        
-        case e_position::READY:
-            return this->gotoPosition(POSITION_PRESET::READY, speed, time);
-            break;
-        
-        case e_position::STRAIGHT_UP:
-            return this->gotoPosition(POSITION_PRESET::STRAIGHT_UP, speed, time);
-            break;
-    
-        default:
-            return false;
-            break;
-    }
 }
