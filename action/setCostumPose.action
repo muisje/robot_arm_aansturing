@@ -1,15 +1,15 @@
 #goal definition
-int32 a_Base
-int32 a_Shoulder
-int32 a_Elbow
-int32 a_Wrist
-int32 a_Gripper
-int32 a_rist
+int32 g_base
+int32 g_shoulder
+int32 g_elbow
+int32 g_wrist
+int32 g_gripper
+int32 g_wristRotate
 
 ---
 #result definition
-int32 finalPose
+int32 r_finalPose
 
 ---
 #feedback
-int32 procesStatus
+int32 f_procesStatus
