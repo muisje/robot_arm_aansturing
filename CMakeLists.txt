@@ -32,9 +32,12 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
+add_library(SSC32U src/robot_arm/SSC32U.cpp)
+
 AUX_SOURCE_DIRECTORY(src/robot_arm SOURCE_ROBOT_ARM)
 add_executable(robot_arm ${SOURCE_ROBOT_ARM})
-target_link_libraries(robot_arm ${catkin_LIBRARIES})
+
+target_link_libraries(robot_arm ${catkin_LIBRARIES} SSC32U)
 
 add_dependencies(
   robot_arm
