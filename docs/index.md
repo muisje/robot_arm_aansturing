@@ -16,7 +16,7 @@ draft
 
 ## todo
 
-* [ ] noodstop && feedback positie -M
+* [x] noodstop && feedback positie -M
 * [x] range of motion beperking apendix A
 * [ ] meerdere robot armen posities werkend.
 * [x] Servo begrenzing
@@ -24,7 +24,7 @@ draft
 * [x] dll lld -M
 * [ ] QoS
 * [ ] doxygen
-* [ ] sequence diagram - M
+* [ ] sequence diagram - H
 * [ ] protocol state machine
 * [ ] use cases
 * [ ] component diagram
