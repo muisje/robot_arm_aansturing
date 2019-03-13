@@ -75,5 +75,4 @@ void SSC32U::sendCommand(uint8_t pin, uint16_t pulseWidth, uint16_t speed, uint1
     }
     command += CR;
     port->write_some(boost::asio::buffer(command.data(), command.size()));
-
 }
