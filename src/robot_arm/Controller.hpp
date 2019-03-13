@@ -1,14 +1,33 @@
+#ifndef CONTROLLER_HPP
+#define CONTROLLER_HPP
+
+
+#include "SSC32U.hpp"
+#include "AL5D.hpp"
+
+#include <chrono>
+#include <thread>
+#include <boost/assign/list_of.hpp> // for 'map_list_of()'
+#include <boost/assert.hpp> 
+
 #include <actionlib/server/simple_action_server.h>
 #include <robot_arm_aansturing/setPoseAction.h>
 #include <robot_arm_aansturing/setCostumPoseAction.h>
 
-#ifndef CONTROLLER_HPP
-#define CONTROLLER_HPP
+
+
 
 class Controller
 {
+
+  public:
+    Controller(std::string name, std::string aname, SSC32U& board, std::map<e_joint, Range> ranges);
+    ~Controller(void);
+
+    void executePose(const robot_arm_aansturing::setPoseGoalConstPtr &goal);
+    void executeCostumPose(const robot_arm_aansturing::setCostumPoseGoalConstPtr &goal);
+
   protected:
-  
 
     //Action setPose
     robot_arm_aansturing::setPoseFeedback setPose_feedback;
@@ -28,12 +47,11 @@ class Controller
 
     std::string setCostumPose_name;
 
-  public:
-    Controller(std::string name, std::string aname);
-    ~Controller(void);
+    
 
-    void executePose(const robot_arm_aansturing::setPoseGoalConstPtr &goal);
-    void executeCostumPose(const robot_arm_aansturing::setCostumPoseGoalConstPtr &goal);
+  private:
+    AL5D robotArm;
+
 
 };
 

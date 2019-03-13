@@ -31,13 +31,13 @@ struct userInput InputController::getUserInput()
 
         std::cout << " Pre set pose selected \n Choose on of the next poses Park(P), Ready(R) or Straight-up(S)" << std::endl;
         getline(std::cin, returnValue.stringInput);
+
     }
     else
     {
         std::cout << "User input not supported" << std::endl;
         //TODO ROS IMPELENT ROS ERROR
     }
-
     return returnValue;
 }
 
@@ -69,6 +69,8 @@ void InputController::sendRequest(struct userInput input)
             std::cout << "User input not supported" << std::endl;
             //TODO ROS IMPELENT ROS ERROR
         }
+        std::cout << "Sending goal" << std::endl;
+
         ac.sendGoal(goal);
 
         ac.waitForResult(ros::Duration(30.0));
