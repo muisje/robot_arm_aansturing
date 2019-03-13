@@ -10,3 +10,6 @@ Set position ofset with pulse -100 to 100 is around 15 degrees
 
 
 "robot 2" kan niet rechtop elbow is fout
+
+
+map robotarm , ofset per joint
