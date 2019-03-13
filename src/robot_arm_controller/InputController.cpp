@@ -1,49 +1,49 @@
-#include "ImputController.hpp"
+#include "InputController.hpp"
 
-ImputController::ImputController()
+InputController::InputController()
 {
 
 }
 
-ImputController::~ImputController()
+InputController::~InputController()
 {
 
 }
 
-struct userImput ImputController::getUserImput()
+struct userInput InputController::getUserInput()
 {
-    userImput returnValue;
+    userInput returnValue;
 
-    std::string userImput = "";
+    std::string userInput = "";
     std::cout << " Would u like to set a pose(P) or a custom position(C)" << std::endl;
-    getline(std::cin, userImput);
+    getline(std::cin, userInput);
 
-    if (userImput == "c" || userImput == "C")
+    if (userInput == "c" || userInput == "C")
     {
         returnValue.prefrence = COSTUM_POSE;
 
         std::cout << " Costum pose selected \n Use the next format to set the costum position: <Base degree>,<Shoulder degree>,<Elbow degree>,<Wrist degree>,<Gripper degree>,<Gripper rotate degree>," << std::endl;
-        getline(std::cin, returnValue.stringImput);
+        getline(std::cin, returnValue.stringInput);
     }
-    else if (userImput == "p" || userImput == "P")
+    else if (userInput == "p" || userInput == "P")
     {
         returnValue.prefrence = PRE_SET_POSE;
 
         std::cout << " Pre set pose selected \n Choose on of the next poses Park(P), Ready(R) or Straight-up(S)" << std::endl;
-        getline(std::cin, returnValue.stringImput);
+        getline(std::cin, returnValue.stringInput);
     }
     else
     {
-        std::cout << "User imput not supported" << std::endl;
+        std::cout << "User input not supported" << std::endl;
         //TODO ROS IMPELENT ROS ERROR
     }
 
     return returnValue;
 }
 
-void ImputController::sendRequest(struct userImput imput)
+void InputController::sendRequest(struct userInput input)
 {
-    if (imput.prefrence == PRE_SET_POSE)
+    if (input.prefrence == PRE_SET_POSE)
     {
         actionlib::SimpleActionClient<robot_arm_aansturing::setPoseAction> ac("robot_arm", true);
 
@@ -52,28 +52,28 @@ void ImputController::sendRequest(struct userImput imput)
 
         robot_arm_aansturing::setPoseGoal goal;
 
-        if (imput.stringImput == "p" || imput.stringImput == "P")
+        if (input.stringInput == "p" || input.stringInput == "P")
         {
             goal.g_pos = e_poses::PARK;
         }
-        else if (imput.stringImput == "r" || imput.stringImput == "R")
+        else if (input.stringInput == "r" || input.stringInput == "R")
         {
             goal.g_pos = e_poses::READY;
         }
-        else if ((imput.stringImput == "s" || imput.stringImput == "S"))
+        else if ((input.stringInput == "s" || input.stringInput == "S"))
         {
             goal.g_pos = e_poses::STRAIGHT_UP;
         }
         else
         {
-            std::cout << "User imput not supported" << std::endl;
+            std::cout << "User input not supported" << std::endl;
             //TODO ROS IMPELENT ROS ERROR
         }
         ac.sendGoal(goal);
 
         ac.waitForResult(ros::Duration(30.0));
     }
-    else if (imput.prefrence == COSTUM_POSE)
+    else if (input.prefrence == COSTUM_POSE)
     {
         actionlib::SimpleActionClient<robot_arm_aansturing::setCostumPoseAction> ac("test", true);
 
@@ -82,7 +82,7 @@ void ImputController::sendRequest(struct userImput imput)
 
         robot_arm_aansturing::setCostumPoseGoal goal;
 
-        struct parsString messageValues(imput.stringImput);
+        struct parsString messageValues(input.stringInput);
 
         goal.g_base = messageValues.base;
         goal.g_shoulder = messageValues.shoulder;

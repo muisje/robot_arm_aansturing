@@ -1,5 +1,5 @@
-#ifndef IMPUTCONTROLLER_HPP
-#define IMPUTCONTROLLER_HPP
+#ifndef INPUTCONTROLLER_HPP
+#define INPUTCONTROLLER_HPP
 
 #include <iostream>
 #include <vector>
@@ -17,10 +17,10 @@ enum e_userPrefrences
     PRE_SET_POSE
 };
 
-struct userImput
+struct userInput
 {
     e_userPrefrences prefrence;
-    std::string stringImput;
+    std::string stringInput;
 };
 
 struct parsString
@@ -32,17 +32,17 @@ struct parsString
     int gripper;
     int wristRotate;
 
-    parsString(std::string &imput)
+    parsString(std::string &input)
     {
         std::vector<int> values;
         std::string subString;
         unsigned int previousIdx = 0;
 
-        for (unsigned int idx = 0; idx < imput.size(); ++idx)
+        for (unsigned int idx = 0; idx < input.size(); ++idx)
         {
-            if (imput[idx] == ',')
+            if (input[idx] == ',')
             {
-                std::string substr = imput.substr(previousIdx, idx - previousIdx);
+                std::string substr = input.substr(previousIdx, idx - previousIdx);
                 values.push_back(std::stoi(substr));
                 previousIdx = idx + 1;
             }
@@ -64,13 +64,19 @@ struct parsString
     }
 };
 
-class ImputController
+class InputController
 {
   public:
-    ImputController();
-    ~ImputController();
-    struct userImput getUserImput();
-    void sendRequest(struct userImput imput);
+    InputController();
+    ~InputController();
+
+    /**
+     * @brief Get the user Input by terminal input
+     * 
+     * @return - Return a struct with the input string and a preference for a costume pose or pre set pose
+     */
+    struct userInput getUserInput();
+    void sendRequest(struct userInput input);
 
 };
 

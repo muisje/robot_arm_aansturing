@@ -4,7 +4,7 @@
 #include <robot_arm_aansturing/setPoseAction.h>
 #include <robot_arm_aansturing/setCostumPoseAction.h>
 #include "../shared_lib/Shared.hpp"
-#include "ImputController.hpp"
+#include "InputController.hpp"
 
 // Called once when the goal completes
 // void doneCb(const actionlib::SimpleClientGoalState& state,
@@ -31,9 +31,9 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "robot_arm_controller");
 
 
-    ImputController controller;
-    auto userImput = controller.getUserImput();
-    controller.sendRequest(userImput);
+    InputController controller;
+    auto userInput = controller.getUserInput();
+    controller.sendRequest(userInput);
 
     return 0;
 }
