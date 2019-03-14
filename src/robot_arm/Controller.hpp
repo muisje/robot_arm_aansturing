@@ -29,7 +29,7 @@ class Controller
      * @param board - The controller driver for the robotic arm
      * @param ranges - The physical ranges of the arm
      */
-    Controller(std::string a_setPose_name, std::string a_setCostumPose_name, SSC32U& board, std::map<e_joint, Range> ranges);
+    Controller(std::string a_setPose_name, std::string a_setCostumPose_name, SSC32U& board, std::map<e_joint, Range> ranges, const std::map<e_joint, int16_t> & jointOffsets);
     ~Controller(void);
     
     /**

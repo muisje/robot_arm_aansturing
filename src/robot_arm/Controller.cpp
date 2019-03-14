@@ -1,12 +1,12 @@
 #include "Controller.hpp"
 #include "../shared_lib/Shared.hpp"
 
-Controller::Controller(std::string a_setPose_name, std::string a_setCostumPose_name, SSC32U& board, std::map<e_joint, Range> ranges) : 
+Controller::Controller(std::string a_setPose_name, std::string a_setCostumPose_name, SSC32U& board, std::map<e_joint, Range> ranges, const std::map<e_joint, int16_t> & jointOffsets) : 
                                                                                     setPose_as(setPose_nh, a_setPose_name, boost::bind(&Controller::executePose, this, _1), false),
                                                                                     setPose_name(a_setPose_name),
                                                                                     setCostumPose_as(setCostumPose_nh, a_setCostumPose_name, boost::bind(&Controller::executeCostumPose, this, _1), false),
                                                                                     setCostumPose_name(a_setCostumPose_name),
-                                                                                    robotArm(board,ranges)
+                                                                                    robotArm(board, ranges, jointOffsets)
                                                                                        
 
 {

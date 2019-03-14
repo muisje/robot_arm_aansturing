@@ -1,10 +1,8 @@
-
-#include "Controller.hpp"
-#include <ros/ros.h>
-
 #include "SSC32U.hpp"
 #include "AL5D.hpp"
-
+#include "ArmOffset.hpp"
+#include "Controller.hpp"
+#include <ros/ros.h>
 #include <chrono>
 #include <thread>
 #include <boost/assign/list_of.hpp> // for 'map_list_of()'
@@ -19,7 +17,7 @@ int main(int argc, char **argv)
     ros::init(argc,argv,"robot");
     ros::start();
 
-    std::map<e_joint, Range> jointRangess = boost::assign::map_list_of
+    std::map<e_joint, Range> jointRanges = boost::assign::map_list_of
     (e_joint::BASE, Range{-90, 0}) (e_joint::SHOULDER, Range{-30, 90}) (e_joint::ELBOW, Range{0, 90})
     (e_joint::WRIST, Range{-90, 90}) (e_joint::WRIST_ROTATE, Range{-90, 90});
 
@@ -27,8 +25,8 @@ int main(int argc, char **argv)
 
     //If user used a argument for the serial 
     SSC32U servoController("/dev/ttyUSB0", std::stoi(argv[1]));
-    Controller c("pose_action","costum_pose_action",servoController,jointRangess);
-
+    Controller c("pose_action","costum_pose_action",servoController,jointRanges, ArmOffset::ROBOT_2);
+    
     if(argc > 1)
     {
         
