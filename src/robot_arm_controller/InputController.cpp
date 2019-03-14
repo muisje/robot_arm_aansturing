@@ -31,13 +31,13 @@ struct userInput InputController::getUserInput()
 
         std::cout << " Pre set pose selected \n Choose on of the next poses Park(P), Ready(R) or Straight-up(S)" << std::endl;
         getline(std::cin, returnValue.stringInput);
+
     }
     else
     {
         std::cout << "User input not supported" << std::endl;
         //TODO ROS IMPELENT ROS ERROR
     }
-
     return returnValue;
 }
 
@@ -45,7 +45,7 @@ void InputController::sendRequest(struct userInput input)
 {
     if (input.prefrence == PRE_SET_POSE)
     {
-        actionlib::SimpleActionClient<robot_arm_aansturing::setPoseAction> ac("robot_arm", true);
+        actionlib::SimpleActionClient<robot_arm_aansturing::setPoseAction> ac("pose_action", true);
 
         ros::start();
         ac.waitForServer();
@@ -69,13 +69,15 @@ void InputController::sendRequest(struct userInput input)
             std::cout << "User input not supported" << std::endl;
             //TODO ROS IMPELENT ROS ERROR
         }
+        std::cout << "Sending goal" << std::endl;
+
         ac.sendGoal(goal);
 
         ac.waitForResult(ros::Duration(30.0));
     }
     else if (input.prefrence == COSTUM_POSE)
     {
-        actionlib::SimpleActionClient<robot_arm_aansturing::setCostumPoseAction> ac("test", true);
+        actionlib::SimpleActionClient<robot_arm_aansturing::setCostumPoseAction> ac("costum_pose_action", true);
 
         ros::start();
         ac.waitForServer();

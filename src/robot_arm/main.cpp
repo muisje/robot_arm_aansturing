@@ -17,47 +17,35 @@ int main(int argc, char **argv)
     ros::init(argc,argv,"robot");
     ros::start();
 
-    Controller c("robot_arm","test");
-    
-
     std::map<e_joint, Range> jointRanges = boost::assign::map_list_of
-    (e_joint::BASE, Range{-90, 0}) (e_joint::SHOULDER, Range{-30, 90}) (e_joint::ELBOW, Range{0, 135})
+    (e_joint::BASE, Range{-90, 0}) (e_joint::SHOULDER, Range{-30, 90}) (e_joint::ELBOW, Range{0, 90})
     (e_joint::WRIST, Range{-90, 90}) (e_joint::WRIST_ROTATE, Range{-90, 90});
 
+    
+
     //If user used a argument for the serial 
-    
-    
     SSC32U servoController("/dev/ttyUSB0", std::stoi(argv[1]));
+    Controller c("pose_action","costum_pose_action",servoController,jointRanges, ArmOffset::ROBOT_2);
     
-    // servoController.setPositionOffset(e_joint::ELBOW, 0);
+    if(argc > 1)
+    {
+        
+        
 
-    AL5D robotArm(servoController, jointRanges, ArmOffset::ROBOT_2);
-    
-    std::cout << "begin" << std::endl;
-    std::cout << robotArm.gotoPosition(POSITION_PRESET::PARK) << std::endl;
-    std::this_thread::sleep_for(2s);
-    
-    std::cout << "ready" << std::endl;
-    std::cout << robotArm.gotoPosition(POSITION_PRESET::READY, 0, 2300) << std::endl;
-    std::this_thread::sleep_for(5s);
-    
-    // std::cout << "straight" << std::endl;
-    // robotArm.gotoPosition(POSITION_PRESET::STRAIGHT_UP, 0, 5000);
-    // std::this_thread::sleep_for(2s);
+        // AL5D robotArm(servoController,jointRangess);
 
-    // std::cout << "stop" << std::endl;
-    // robotArm.stopAllMotorFunctions();
-    // std::this_thread::sleep_for(5s);
+        // robotArm.gotoPosition(POSITION_PRESET::PARK);
+        // std::this_thread::sleep_for(3s);
+        
+        // robotArm.gotoPosition(POSITION_PRESET::READY, 0, 2300);
+        // std::this_thread::sleep_for(5s);
+        
+        // robotArm.gotoPosition(POSITION_PRESET::STRAIGHT_UP, 0, 500);
+        // std::this_thread::sleep_for(5s);
 
-    std::cout << "straight" << std::endl;
-    std::cout << robotArm.gotoPosition(POSITION_PRESET::STRAIGHT_UP, 0, 1000) << std::endl;
-    std::this_thread::sleep_for(2s);
-
-
-    std::cout << "end" << std::endl;
-    std::cout << robotArm.gotoPosition(POSITION_PRESET::PARK, 0, 2300) << std::endl;
-    std::this_thread::sleep_for(3s);
-    
+        // robotArm.gotoPosition(POSITION_PRESET::PARK, 0, 2300);
+        // std::this_thread::sleep_for(5s);
+    }
 
     ROS_INFO_STREAM("Hello, robot arm!");
     ros::spin();// Stop the node's resources

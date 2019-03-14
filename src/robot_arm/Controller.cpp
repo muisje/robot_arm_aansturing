@@ -1,10 +1,13 @@
 #include "Controller.hpp"
 #include "../shared_lib/Shared.hpp"
 
-Controller::Controller(std::string a_setPose_name, std::string a_setCostumPose_name) : setPose_as(setPose_nh, a_setPose_name, boost::bind(&Controller::executePose, this, _1), false),
-                                                                                       setPose_name(a_setPose_name),
-                                                                                       setCostumPose_as(setCostumPose_nh, a_setCostumPose_name, boost::bind(&Controller::executeCostumPose, this, _1), false),
-                                                                                       setCostumPose_name(a_setCostumPose_name)
+Controller::Controller(std::string a_setPose_name, std::string a_setCostumPose_name, SSC32U& board, std::map<e_joint, Range> ranges, const std::map<e_joint, int16_t> & jointOffsets) : 
+                                                                                    setPose_as(setPose_nh, a_setPose_name, boost::bind(&Controller::executePose, this, _1), false),
+                                                                                    setPose_name(a_setPose_name),
+                                                                                    setCostumPose_as(setCostumPose_nh, a_setCostumPose_name, boost::bind(&Controller::executeCostumPose, this, _1), false),
+                                                                                    setCostumPose_name(a_setCostumPose_name),
+                                                                                    robotArm(board, ranges, jointOffsets)
+                                                                                       
 
 {
     setPose_as.start();
@@ -17,25 +20,30 @@ Controller::~Controller(void)
 
 void Controller::executePose(const robot_arm_aansturing::setPoseGoalConstPtr &goal)
 {
+    std::cout << "Executing pose" <<std::endl;
+
     if (goal->g_pos == e_poses::PARK)
     {
         std::cout << "MOVING TO PARK" <<std::endl;
-        //TODO ARM NAAR PARK BEWEGEN
+        robotArm.gotoPosition(POSITION_PRESET::PARK);
     }
     else if (goal->g_pos == e_poses::READY)
     {
         std::cout << "MOVING TO READY" <<std::endl;
-        //TODO ARM NAAR READY BEWEGEN
+        robotArm.gotoPosition(POSITION_PRESET::READY, 0, 2300);
     }
     else if (goal->g_pos == e_poses::STRAIGHT_UP)
     {
         std::cout << "MOVING TO STRAIGTUP" <<std::endl;
-        //TODO ARM NAAR STRAIGTUP BEWEGEN
+        robotArm.gotoPosition(POSITION_PRESET::STRAIGHT_UP, 0, 500);
     }
     else
     {
         //ERRROR GOOIEN
     }
+
+    robotArm.gotoPosition(POSITION_PRESET::PARK, 0, 2300);
+    std::this_thread::sleep_for(std::chrono::seconds(5));
 
     //TODO SET FINAL POSITION
     setPose_result.r_finalPose = 1;

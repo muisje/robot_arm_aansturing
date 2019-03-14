@@ -30,10 +30,12 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "robot_arm_controller");
 
-
     InputController controller;
-    auto userInput = controller.getUserInput();
-    controller.sendRequest(userInput);
 
+    while(1)
+    {
+        auto userInput = controller.getUserInput();
+        controller.sendRequest(userInput);
+    }
     return 0;
 }
