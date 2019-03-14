@@ -32,6 +32,7 @@ draft
 * [ ] timing diagram
 * [ ] rosout info
 * [ ] precondities checken??
+* [ ] Costum pos implementeren - M
 
 ## REQ
 
