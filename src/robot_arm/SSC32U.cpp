@@ -4,12 +4,9 @@
 
 SSC32U::SSC32U(std::string portName, unsigned int baudRate)
 {
-    
     boost::asio::io_service io;
-
     port = new boost::asio::serial_port(io, portName);
     port->set_option(boost::asio::serial_port_base::baud_rate(baudRate));
-    
 }
 
 SSC32U::~SSC32U()
@@ -25,16 +22,6 @@ void SSC32U::move(uint8_t pin, int16_t position, uint16_t speed, uint16_t time)
 
     const int min_pulse = 500;
     const int max_pulse = 2500;
-
-    // if (position > max_pos)
-    // {
-    //     position = max_pos;
-    // }
-
-    // if (position < min_pos)
-    // {
-    //     position = min_pos;
-    // }
 
     int pos_width = max_pos - min_pos;
     int pulse_diff = max_pulse - min_pulse;
