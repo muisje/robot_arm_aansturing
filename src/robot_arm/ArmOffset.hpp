@@ -10,8 +10,8 @@
 namespace ArmOffset
 {
     const std::map<e_joint, int16_t> ROBOT_2 = boost::assign::map_list_of
-    (e_joint::BASE, 0) (e_joint::SHOULDER, 0) (e_joint::ELBOW, 0)
-    (e_joint::WRIST, 0) (e_joint::GRIPPER, 0) (e_joint::WRIST_ROTATE, 0);
+    (e_joint::BASE, 0) (e_joint::SHOULDER, 0) (e_joint::ELBOW, -70)
+    (e_joint::WRIST, 50) (e_joint::GRIPPER, 0) (e_joint::WRIST_ROTATE, 0);
 }
 
 #endif // ARM_OFFSET
