@@ -1,3 +1,13 @@
+/**
+ * @file PositionInstruction.hpp
+ * @author Maurits Muijsert (MPW.Muijsert@student.han.nl)
+ * @brief a storage struct to have data easily combined of an position instruction.
+ * @version 0.1
+ * @date 2019-03-14
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
 #ifndef POSITION_INSTRUCTION_HPP
 #define POSITION_INSTRUCTION_HPP
 
@@ -14,4 +24,5 @@ struct PositionInstruction
 };
 
 
-#endif // POSITION_INSTRUCTION_HPP
+#endif // POSITION_INSTRUCTION_HPP    const int max_pulse = 2500;
+

@@ -1,3 +1,11 @@
+/**
+ * @file Position.hpp
+ * @author Maurits Muijsert (MPW.Muijsert@student.han.nl)
+ * @brief Preset positions like park, ready and straight up.
+ * @version 0.1
+ * @date 2019-03-14
+ * 
+ */
 #ifndef POSITION_HPP
 #define POSITION_HPP
 
