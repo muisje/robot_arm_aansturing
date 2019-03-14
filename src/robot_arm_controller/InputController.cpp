@@ -45,7 +45,7 @@ void InputController::sendRequest(struct userInput input)
 {
     if (input.prefrence == PRE_SET_POSE)
     {
-        actionlib::SimpleActionClient<robot_arm_aansturing::setPoseAction> ac("robot_arm", true);
+        actionlib::SimpleActionClient<robot_arm_aansturing::setPoseAction> ac("pose_action", true);
 
         ros::start();
         ac.waitForServer();
@@ -77,7 +77,7 @@ void InputController::sendRequest(struct userInput input)
     }
     else if (input.prefrence == COSTUM_POSE)
     {
-        actionlib::SimpleActionClient<robot_arm_aansturing::setCostumPoseAction> ac("test", true);
+        actionlib::SimpleActionClient<robot_arm_aansturing::setCostumPoseAction> ac("costum_pose_action", true);
 
         ros::start();
         ac.waitForServer();

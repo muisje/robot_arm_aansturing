@@ -26,19 +26,16 @@ void Controller::executePose(const robot_arm_aansturing::setPoseGoalConstPtr &go
     {
         std::cout << "MOVING TO PARK" <<std::endl;
         robotArm.gotoPosition(POSITION_PRESET::PARK);
-        std::this_thread::sleep_for(std::chrono::seconds(3));
     }
     else if (goal->g_pos == e_poses::READY)
     {
         std::cout << "MOVING TO READY" <<std::endl;
         robotArm.gotoPosition(POSITION_PRESET::READY, 0, 2300);
-        std::this_thread::sleep_for(std::chrono::seconds(5));
     }
     else if (goal->g_pos == e_poses::STRAIGHT_UP)
     {
         std::cout << "MOVING TO STRAIGTUP" <<std::endl;
         robotArm.gotoPosition(POSITION_PRESET::STRAIGHT_UP, 0, 500);
-        std::this_thread::sleep_for(std::chrono::seconds(5));
     }
     else
     {

@@ -76,6 +76,12 @@ class InputController
      * @return - Return a struct with the input string and a preference for a costume pose or pre set pose
      */
     struct userInput getUserInput();
+
+    /**
+     * @brief Send a action message tot the published node
+     * 
+     * @param input - A struct with the user input info
+     */
     void sendRequest(struct userInput input);
 
 };

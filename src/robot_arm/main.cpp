@@ -27,8 +27,8 @@ int main(int argc, char **argv)
 
     //If user used a argument for the serial 
     SSC32U servoController("/dev/ttyUSB0", std::stoi(argv[1]));
-    Controller c("robot_arm","test",servoController,jointRangess);
-    
+    Controller c("pose_action","costum_pose_action",servoController,jointRangess);
+
     if(argc > 1)
     {
         

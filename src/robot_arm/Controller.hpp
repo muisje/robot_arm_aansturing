@@ -21,15 +21,37 @@ class Controller
 {
 
   public:
-    Controller(std::string name, std::string aname, SSC32U& board, std::map<e_joint, Range> ranges);
+    /**
+     * @brief Construct a new Controller object
+     * 
+     * @param a_setPose_name - The node u would like the controller set pose to subscribe to
+     * @param a_setCostumPose_name - The node u would like the controller set costum pose to subscribe to
+     * @param board - The controller driver for the robotic arm
+     * @param ranges - The physical ranges of the arm
+     */
+    Controller(std::string a_setPose_name, std::string a_setCostumPose_name, SSC32U& board, std::map<e_joint, Range> ranges);
     ~Controller(void);
-
+    
+    /**
+     * @brief This function will be executed when a pose message is recieved
+     * 
+     * @param goal - The action goal variable from the sender
+     */
     void executePose(const robot_arm_aansturing::setPoseGoalConstPtr &goal);
+
+    /**
+     * @brief This function will be executed when a costum pose message is recieved
+     * 
+     * @param goal 
+     */
     void executeCostumPose(const robot_arm_aansturing::setCostumPoseGoalConstPtr &goal);
 
   protected:
 
-    //Action setPose
+    /**
+     * @brief Pose action varible
+     * 
+     */
     robot_arm_aansturing::setPoseFeedback setPose_feedback;
     robot_arm_aansturing::setPoseResult setPose_result;
 
@@ -37,8 +59,11 @@ class Controller
     actionlib::SimpleActionServer<robot_arm_aansturing::setPoseAction> setPose_as;
 
     std::string setPose_name;
-
-    //Action setCostumPose
+    
+    /**
+     * @brief Constom pose action varible
+     * 
+     */
     robot_arm_aansturing::setCostumPoseFeedback setCostumPose_feedback;
     robot_arm_aansturing::setCostumPoseResult setCostumPose_result;
 
