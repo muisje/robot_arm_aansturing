@@ -26,3 +26,9 @@ void Queue::checkQueue()
         queue.pop();
     }
 }
+
+void Queue::emptyQueue()
+{
+    robotArm.stopAllMotorFunctions();
+    queue = {};
+}

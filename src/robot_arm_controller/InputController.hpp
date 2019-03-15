@@ -9,12 +9,14 @@
 #include <actionlib/client/terminal_state.h>
 #include <robot_arm_aansturing/setPoseAction.h>
 #include <robot_arm_aansturing/setCostumPoseAction.h>
+#include <robot_arm_aansturing/emergencyAction.h>
 #include "../shared_lib/Shared.hpp"
 
 enum e_userPrefrences
 {
     COSTUM_POSE,
     PRE_SET_POSE,
+    STOP,
     DEFAULT
 };
 
