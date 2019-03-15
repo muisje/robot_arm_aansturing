@@ -1,0 +1,5 @@
+@startuml
+[*] --> NOT_MOVING
+NOT_MOVING --> MOVING
+MOVING --> NOT_MOVING
+@enduml
