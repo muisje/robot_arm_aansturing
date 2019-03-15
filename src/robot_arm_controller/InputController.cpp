@@ -20,7 +20,7 @@ struct userInput InputController::getUserInput()
 {
     userInput returnValue;
     std::string userInput = "";
-    std::cout << " Would u like to set a pose(P) or a custom position(C). Type exit to close the executable" << std::endl;
+    std::cout << " Would u like to set a pose(P) or a custom position(C). Type exit to close the executable or S for a emergency stop" << std::endl;
     getline(std::cin, userInput);
 
     if (userInput == "c" || userInput == "C")
@@ -36,7 +36,10 @@ struct userInput InputController::getUserInput()
 
         std::cout << " Pre set pose selected \n Choose on of the next poses Park(P), Ready(R) or Straight-up(S)" << std::endl;
         getline(std::cin, returnValue.stringInput);
-
+    }
+    else if (userInput == "s" || userInput == "S")
+    {
+        returnValue.prefrence = STOP;
     }
     else if (userInput == "exit" || userInput == "Exit")
     {
@@ -103,6 +106,21 @@ void InputController::sendRequest(struct userInput input)
         goal.g_wrist = messageValues.wrist;
         goal.g_gripper = messageValues.gripper;
         goal.g_wristRotate = messageValues.wristRotate;
+
+        ac.sendGoal(goal);
+
+        ac.waitForResult(ros::Duration(30.0));
+    }
+    else if (input.prefrence == STOP)
+    {
+        actionlib::SimpleActionClient<robot_arm_aansturing::emergencyAction> ac("emergency", true);
+
+        ros::start();
+        ac.waitForServer();
+
+        robot_arm_aansturing::emergencyGoal goal;
+
+        goal.emergency = true;
 
         ac.sendGoal(goal);
 

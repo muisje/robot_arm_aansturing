@@ -19,6 +19,11 @@ add_action_files(
   FILES setCostumPose.action
 )
 
+add_action_files(
+  DIRECTORY action
+  FILES emergency.action
+)
+
 generate_messages(
   DEPENDENCIES actionlib_msgs std_msgs
 )

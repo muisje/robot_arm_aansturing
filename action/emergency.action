@@ -1,0 +1,11 @@
+#goal definition
+bool emergency
+
+---
+#result definition
+
+int32 succes
+
+---
+#feedback
+bool status

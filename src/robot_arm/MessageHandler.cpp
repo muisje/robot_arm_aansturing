@@ -2,17 +2,20 @@
 #include "../shared_lib/Shared.hpp"
 #include <ros/console.h>
 
-MessageHandler::MessageHandler(std::string a_setPose_name, std::string a_setCostumPose_name, std::shared_ptr<Queue> a_queue) : 
+MessageHandler::MessageHandler(std::string a_setPose_name, std::string a_setCostumPose_name, std::string a_emergency_name, std::shared_ptr<Queue> a_queue) : 
                                                                                     setPose_as(setPose_nh, a_setPose_name, boost::bind(&MessageHandler::executePose, this, _1), false),
                                                                                     setPose_name(a_setPose_name),
                                                                                     setCostumPose_as(setCostumPose_nh, a_setCostumPose_name, boost::bind(&MessageHandler::executeCostumPose, this, _1), false),
                                                                                     setCostumPose_name(a_setCostumPose_name),
+                                                                                    emergency_as(emergency_nh, a_emergency_name, boost::bind(&MessageHandler::executeEmergency, this, _1), false),
+                                                                                    emergency_name(a_emergency_name),
                                                                                     queue(a_queue)
                                                                                        
 
 {
     setPose_as.start();
     setCostumPose_as.start();
+    emergency_as.start();
     
 }
 
@@ -57,4 +60,13 @@ void MessageHandler::executeCostumPose(const robot_arm_aansturing::setCostumPose
 
     setCostumPose_result.r_finalPose = 1;
     setCostumPose_as.setSucceeded(setCostumPose_result);
+}
+
+
+void MessageHandler::executeEmergency(const robot_arm_aansturing::emergencyGoalConstPtr &goal)
+{
+    std::cout << "Executing emergency" << std::endl;
+    queue->emptyQueue();
+    emergency_result.succes = true;
+    emergency_as.setSucceeded(emergency_result);
 }

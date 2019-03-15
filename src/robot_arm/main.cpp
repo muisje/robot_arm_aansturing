@@ -26,7 +26,7 @@ int main(int argc, char **argv)
     //Queue q(robotArm);
     std::shared_ptr<Queue> queue = std::make_shared<Queue>(robotArm);
 
-    MessageHandler c("pose_action","costum_pose_action",queue);
+    MessageHandler c("pose_action","costum_pose_action","emergency",queue);
 
     
     while (ros::ok())
