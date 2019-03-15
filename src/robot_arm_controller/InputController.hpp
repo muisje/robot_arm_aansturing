@@ -14,12 +14,13 @@
 enum e_userPrefrences
 {
     COSTUM_POSE,
-    PRE_SET_POSE
+    PRE_SET_POSE,
+    DEFAULT
 };
 
 struct userInput
 {
-    e_userPrefrences prefrence;
+    e_userPrefrences prefrence = e_userPrefrences::DEFAULT;
     std::string stringInput;
     bool appStatus = true;
 };

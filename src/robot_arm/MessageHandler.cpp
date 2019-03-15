@@ -8,7 +8,6 @@ MessageHandler::MessageHandler(std::string a_setPose_name, std::string a_setCost
                                                                                     setCostumPose_as(setCostumPose_nh, a_setCostumPose_name, boost::bind(&MessageHandler::executeCostumPose, this, _1), false),
                                                                                     setCostumPose_name(a_setCostumPose_name),
                                                                                     queue(a_queue)
-                                                                                    //,robotArm(a_robotArm)
                                                                                        
 
 {

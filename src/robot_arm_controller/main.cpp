@@ -6,26 +6,6 @@
 #include "../shared_lib/Shared.hpp"
 #include "InputController.hpp"
 
-// Called once when the goal completes
-// void doneCb(const actionlib::SimpleClientGoalState& state,
-//             const FibonacciResultConstPtr& result)
-// {
-//   ROS_INFO("Finished in state [%s]", state.toString().c_str());
-//   ROS_INFO("Answer: %i", result->finalLocation);
-//   ros::shutdown();
-// }
-
-// // Called once when the goal becomes active
-// void activeCb()
-// {
-//   ROS_INFO("Goal just went active");
-// }
-
-// void feedbackCb(const FibonacciFeedbackConstPtr& feedback)
-// {
-//   ROS_INFO("Got Feedback of length %lu", feedback->currentLocation);
-// }
-
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "robot_arm_controller");
@@ -38,7 +18,10 @@ int main(int argc, char **argv)
         input = controller.getUserInput();
 
         if(input.appStatus)
+        {
             controller.sendRequest(input);
+            input.prefrence = e_userPrefrences::DEFAULT;
+        }
     }
     return 0;
 }
