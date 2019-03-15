@@ -1,0 +1,23 @@
+@startuml Use Case Diagram AL5D robot arm controller
+left to right direction
+actor user
+actor AL5D <<internal>>
+
+title Use Case Diagram AL5D robot arm controller
+
+package command_robot_arm <<system>> {
+    note "Handles user instructions to command the robot arm" AS note_1
+    user -- (command custom position)
+    user -- (command preset position)
+    user -- (command emergency stop)
+}
+
+package robot_arm <<sub system>> {
+    note "Translates the instructions to the protocol of the used servo controller of AL5D" AS note_2
+    (command custom position) ..> (Go to position) : <<include>>
+    (command preset position) ..> (Go to position) : <<include>>
+    (command emergency stop) ..> (stop moving) : <<include>>
+    (Go to position) -- AL5D
+    (stop moving) -- AL5D
+}
+@enduml
