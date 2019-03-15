@@ -1,0 +1,30 @@
+@startuml Compnent diagram
+
+
+package "robot_arm" <<system>>  {
+    node "High Level Driver" <<sub system>> {
+        [Controller] 
+
+        [AL5D] -UP-> gotoPosition
+        [AL5D] -UP-> getCurrentPosition
+        [AL5D] -UP-> stopAllMotorFunctions
+
+        [AL5D] --( move
+
+        [Controller] --( gotoPosition
+        [Controller] --( stopAllMotorFunctions
+    }
+    node "Low Level Driver" <<sub system>> {    
+        [SSC32U]
+    }
+    [SSC32U] -> move 
+    [SSC32U] --> setPositionOffset 
+}
+
+[Controller] -UP-> handleInstruction 
+
+package "robot_arm_controller" <<sub system>>  {
+
+[InputController] --( handleInstruction
+
+@enduml
