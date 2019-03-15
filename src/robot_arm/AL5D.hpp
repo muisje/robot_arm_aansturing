@@ -19,7 +19,7 @@
 
 class AL5D
 {
-private:
+private: 
     SSC32U servoController;
     std::map<e_joint, Range> jointRanges;
     std::map<e_joint, int16_t> jointOffsets;
@@ -56,6 +56,13 @@ public:
      * 
      */
     void stopAllMotorFunctions();
+    /**
+     * @brief checks if the current position equals the goal position of the current instruction.
+     * 
+     * @return true if it is at destination
+     * @return false if it is not at destination
+     */
+    bool isAtDestination();
     /**
      * @brief Get the Current Position of the AL5D robot arm for each joint in degrees returned in a map.
      * 

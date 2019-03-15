@@ -63,7 +63,7 @@ void Controller::executePose(const robot_arm_aansturing::setPoseGoalConstPtr &go
 
     //TODO GIVE FEEDBACK
     //TODO SET FINAL POSITION WHEN FINISHED
-    ROS_INFO("STATE: FINISHED_MOVING");
+    ROS_INFO("STATE: NOT_MOVING");
     setPose_result.r_finalPose = 1;
     setPose_as.setSucceeded(setPose_result);
 }
@@ -90,7 +90,7 @@ void Controller::executeCostumPose(const robot_arm_aansturing::setCostumPoseGoal
     
     //TODO GIVE FEEDBACK
     //TODO SET FINAL POSITION WHEN FINISHED
-    ROS_INFO("STATE: FINISHED_MOVING");
+    ROS_INFO("STATE: NOT_MOVING");
     setCostumPose_result.r_finalPose = 1;
     setCostumPose_as.setSucceeded(setCostumPose_result);
 }
