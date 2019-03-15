@@ -1,15 +1,15 @@
 #include "SSC32U.hpp"
 #include "AL5D.hpp"
 #include "ArmOffset.hpp"
-#include "Controller.hpp"
+#include "MessageHandler.hpp"
 #include <ros/ros.h>
-#include <chrono>
-#include <thread>
+#include <memory>
+
 #include <boost/assign/list_of.hpp> // for 'map_list_of()'
 #include <boost/assert.hpp> 
+#include "Queue.hpp"
 
-// Standard C++ entry point
-using namespace std::chrono_literals;
+#include <boost/thread/thread.hpp>
 
 
 int main(int argc, char **argv)
@@ -21,35 +21,28 @@ int main(int argc, char **argv)
     (e_joint::BASE, Range{-90, 0}) (e_joint::SHOULDER, Range{-30, 90}) (e_joint::ELBOW, Range{0, 90})
     (e_joint::WRIST, Range{-90, 90}) (e_joint::WRIST_ROTATE, Range{-90, 90});
 
+    if(argc =! 1)
+    {
+        //TODO ROS ERROR GOOIEN
+    }
     
-
+    
     //If user used a argument for the serial 
     SSC32U servoController("/dev/ttyUSB0", std::stoi(argv[1]));
-    Controller c("pose_action","costum_pose_action",servoController,jointRanges, ArmOffset::ROBOT_2);
+    AL5D robotArm(servoController, jointRanges, ArmOffset::ROBOT_2);
     
-    if(argc > 1)
+    //Queue q(robotArm);
+    std::shared_ptr<Queue> q = std::make_shared<Queue>(robotArm);
+
+    MessageHandler c("pose_action","costum_pose_action",q);
+
+    
+    while (ros::ok())
     {
-        
-        
-
-        // AL5D robotArm(servoController,jointRangess);
-
-        // robotArm.gotoPosition(POSITION_PRESET::PARK);
-        // std::this_thread::sleep_for(3s);
-        
-        // robotArm.gotoPosition(POSITION_PRESET::READY, 0, 2300);
-        // std::this_thread::sleep_for(5s);
-        
-        // robotArm.gotoPosition(POSITION_PRESET::STRAIGHT_UP, 0, 500);
-        // std::this_thread::sleep_for(5s);
-
-        // robotArm.gotoPosition(POSITION_PRESET::PARK, 0, 2300);
-        // std::this_thread::sleep_for(5s);
+        q->checkQueue();
+        ros::spinOnce();
     }
 
-    ROS_INFO_STREAM("Hello, robot arm!");
-    ros::spin();// Stop the node's resources
 
-    // Exit tranquillyret
     return 0;
 }

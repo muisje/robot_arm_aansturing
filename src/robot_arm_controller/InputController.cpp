@@ -1,8 +1,13 @@
 #include "InputController.hpp"
+#include <boost/thread.hpp>
+
+
+#include <chrono>
+#include <thread>
 
 InputController::InputController()
 {
-
+    
 }
 
 InputController::~InputController()
@@ -10,12 +15,12 @@ InputController::~InputController()
 
 }
 
+
 struct userInput InputController::getUserInput()
 {
     userInput returnValue;
-
     std::string userInput = "";
-    std::cout << " Would u like to set a pose(P) or a custom position(C)" << std::endl;
+    std::cout << " Would u like to set a pose(P) or a custom position(C). Type exit to close the executable" << std::endl;
     getline(std::cin, userInput);
 
     if (userInput == "c" || userInput == "C")
@@ -33,6 +38,10 @@ struct userInput InputController::getUserInput()
         getline(std::cin, returnValue.stringInput);
 
     }
+    else if (userInput == "exit" || userInput == "Exit")
+    {
+        returnValue.appStatus = false;
+    }
     else
     {
         std::cout << "User input not supported" << std::endl;
@@ -43,6 +52,9 @@ struct userInput InputController::getUserInput()
 
 void InputController::sendRequest(struct userInput input)
 {
+    
+
+
     if (input.prefrence == PRE_SET_POSE)
     {
         actionlib::SimpleActionClient<robot_arm_aansturing::setPoseAction> ac("pose_action", true);
@@ -72,7 +84,6 @@ void InputController::sendRequest(struct userInput input)
         std::cout << "Sending goal" << std::endl;
 
         ac.sendGoal(goal);
-
         ac.waitForResult(ros::Duration(30.0));
     }
     else if (input.prefrence == COSTUM_POSE)
@@ -97,4 +108,6 @@ void InputController::sendRequest(struct userInput input)
 
         ac.waitForResult(ros::Duration(30.0));
     }
+
+    
 }
