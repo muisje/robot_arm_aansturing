@@ -36,7 +36,7 @@ struct parsString
     int gripper;
     int wristRotate;
 
-    parsString(std::string &input)
+    parsString(const std::string &input)
     {
         std::vector<int> values;
         std::string subString;
@@ -63,7 +63,7 @@ struct parsString
         }
         else
         {
-            std::cout << "Value amound not right" << std::endl;
+            ROS_WARN("User input not supported");
         }
     }
 };
@@ -86,7 +86,7 @@ class InputController
      * 
      * @param input - A struct with the user input info
      */
-    void sendRequest(struct userInput input);
+    void sendRequest(struct userInput& input);
 
 };
 

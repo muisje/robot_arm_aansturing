@@ -6,6 +6,7 @@
 #include <map>
 #include "Joint.hpp"
 #include "AL5D.hpp"
+#include <list>
 
 struct armTask
 {
@@ -26,7 +27,7 @@ class Queue
         void emptyQueue();
 
     private:
-        std::queue<armTask> queue; 
+        std::list<armTask> queue; 
         AL5D robotArm;
 };
 

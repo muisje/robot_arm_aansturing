@@ -17,8 +17,6 @@
 #include <robot_arm_aansturing/emergencyAction.h>
 
 
-
-
 class MessageHandler
 {
 
@@ -28,10 +26,9 @@ class MessageHandler
      * 
      * @param a_setPose_name - The node u would like the MessageHandler set pose to subscribe to
      * @param a_setCostumPose_name - The node u would like the MessageHandler set costum pose to subscribe to
-     * @param board - The MessageHandler driver for the robotic arm
      * @param ranges - The physical ranges of the arm
      */
-    MessageHandler(std::string a_setPose_name, std::string a_setCostumPose_name, std::string a_emergency_name, std::shared_ptr<Queue> a_queue);
+    MessageHandler(std::string _setPose_name, std::string a_setCostumPose_name, std::string a_emergency_name, std::shared_ptr<Queue> a_queue);
     ~MessageHandler(void);
     /**
      * @brief This function will be executed when a pose message is recieved
@@ -95,8 +92,6 @@ class MessageHandler
     
 
   private:
-   // AL5D robotArm;
-    
   std::shared_ptr<Queue> queue;
   
 };

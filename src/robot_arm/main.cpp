@@ -17,24 +17,23 @@ int main(int argc, char **argv)
     ros::init(argc,argv,"robot");
     ros::start();
     
-    //If user used a argument for the serial 
+    //Setting up the connection with the controller board
     SSC32U servoController(USB_CONNECTION, BOUTRATE);
     AL5D robotArm(servoController, ROBO_ARM_RANGES, ROBO_ARM_OFFSET);
-    
+
+    //Starting the robotic arm in the default position  
     robotArm.gotoPosition(POSITION_PRESET::PARK);
 
-    //Queue q(robotArm);
+    //Creating a sharedPointer for the message handler
     std::shared_ptr<Queue> queue = std::make_shared<Queue>(robotArm);
-
     MessageHandler c("pose_action","costum_pose_action","emergency",queue);
 
     
     while (ros::ok())
     {
-        queue->checkQueue();
         ros::spinOnce();
+        queue->checkQueue();  
     }
-
 
     return 0;
 }
