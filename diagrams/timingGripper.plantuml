@@ -1,0 +1,35 @@
+@startuml timing diagram gripper
+robust "Robot arm AL5D" as AL5D
+robust "Robot arm" as System
+robust "Robot arm controller" as Controller
+concise "User" as User
+
+@0
+AL5D is NOT_MOVING
+System is NOT_MOVING
+Controller is STANDBY
+User is IDLE
+
+@+100
+User -> Controller : move gripper
+User is WAITING
+
+@+100
+Controller -> System : move gripper
+System is MOVING
+
+@+100
+System -> AL5D : move servo of gripper
+AL5D IS MOVING
+
+@+1000
+AL5D IS NOT_MOVING
+System -> Controller : reached position
+System IS NOT_MOVING
+
+@+100
+Controller -> User : reached position
+User is HAPPY
+
+
+@enduml
