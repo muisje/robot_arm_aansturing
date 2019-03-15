@@ -8,7 +8,7 @@
 
 #define BOUTRATE 115200
 #define USB_CONNECTION "/dev/ttyUSB0"
-#define ROBO_ARM_OFFSET ArmOffset::ROBOT_2
+#define ROBO_ARM_OFFSET ArmOffset::ROBOT_3
 #define ROBO_ARM_RANGES Ranges::AL5DRanges
 
 
@@ -21,6 +21,8 @@ int main(int argc, char **argv)
     SSC32U servoController(USB_CONNECTION, BOUTRATE);
     AL5D robotArm(servoController, ROBO_ARM_RANGES, ROBO_ARM_OFFSET);
     
+    robotArm.gotoPosition(POSITION_PRESET::PARK);
+
     //Queue q(robotArm);
     std::shared_ptr<Queue> queue = std::make_shared<Queue>(robotArm);
 

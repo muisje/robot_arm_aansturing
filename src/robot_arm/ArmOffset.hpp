@@ -20,6 +20,24 @@ namespace ArmOffset
     const std::map<e_joint, int16_t> ROBOT_2 = boost::assign::map_list_of
     (e_joint::BASE, 0) (e_joint::SHOULDER, 0) (e_joint::ELBOW, -70)
     (e_joint::WRIST, 0) (e_joint::GRIPPER, 0) (e_joint::WRIST_ROTATE, 0);
+    
+    //? not done
+    const std::map<e_joint, int16_t> ROBOT_3 = boost::assign::map_list_of
+    (e_joint::BASE, 0) (e_joint::SHOULDER, 0) (e_joint::ELBOW, -70)
+    (e_joint::WRIST, 0) (e_joint::GRIPPER, 0) (e_joint::WRIST_ROTATE, 0);
+    
+    const std::map<e_joint, int16_t> ROBOT_5 = boost::assign::map_list_of
+    (e_joint::BASE, 0) (e_joint::SHOULDER, -5) (e_joint::ELBOW, -80)
+    (e_joint::WRIST, 0) (e_joint::GRIPPER, 0) (e_joint::WRIST_ROTATE, 0);
+    
+    const std::map<e_joint, int16_t> ROBOT_7 = boost::assign::map_list_of
+    (e_joint::BASE, 0) (e_joint::SHOULDER, 0) (e_joint::ELBOW, -75)
+    (e_joint::WRIST, 10) (e_joint::GRIPPER, 0) (e_joint::WRIST_ROTATE, 0);
+    
+    //! 8 didnt function
+    const std::map<e_joint, int16_t> ROBOT_8 = boost::assign::map_list_of
+    (e_joint::BASE, 0) (e_joint::SHOULDER, 0) (e_joint::ELBOW, -75)
+    (e_joint::WRIST, 10) (e_joint::GRIPPER, 0) (e_joint::WRIST_ROTATE, 0);
 }
 
 #endif // ARM_OFFSET
