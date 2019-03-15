@@ -115,3 +115,13 @@ bool AL5D::gotoPosition(std::map<e_joint, int16_t> position, uint16_t speed, uin
     servoController.move(e_joint::WRIST_ROTATE, getCorrectedJointPosition(e_joint::WRIST_ROTATE,    position[e_joint::WRIST_ROTATE]),   speed, time);
     return true;
 }
+
+bool AL5D::isAtDestination()
+{
+    auto currentPosition = this->getCurrentPosition();
+    auto goalPosition = this->currentInstruction.positionGoal;
+
+    return currentPosition.size() == goalPosition.size()
+        && std::equal(goalPosition.begin(), goalPosition.end(),
+                      currentPosition.begin());    
+}
