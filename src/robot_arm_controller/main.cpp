@@ -31,11 +31,14 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "robot_arm_controller");
 
     InputController controller;
+    struct userInput input;
 
-    while(1)
+    while(input.appStatus)
     {
-        auto userInput = controller.getUserInput();
-        controller.sendRequest(userInput);
+        input = controller.getUserInput();
+
+        if(input.appStatus)
+            controller.sendRequest(input);
     }
     return 0;
 }

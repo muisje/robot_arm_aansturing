@@ -21,6 +21,7 @@ struct userInput
 {
     e_userPrefrences prefrence;
     std::string stringInput;
+    bool appStatus = true;
 };
 
 struct parsString
