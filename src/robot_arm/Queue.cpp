@@ -21,7 +21,7 @@ void Queue::checkQueue()
 {
     while(queue.size() > 0)
     {
-        robotArm.gotoPosition(queue.front().s_position, queue.front().s_time, queue.front().s_speed);
+        robotArm.gotoPosition(queue.front().s_position, queue.front().s_speed, queue.front().s_time);
 
         queue.pop();
     }

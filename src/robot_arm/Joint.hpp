@@ -1,3 +1,7 @@
+/**
+ * @brief All the joints of the used robot arm. The values are the signal pins the servo joint is connected to on the servocontroller board. 
+ * 
+ */
 #ifndef JOINT_HPP
 #define JOINT_HPP
 

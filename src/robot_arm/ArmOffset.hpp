@@ -1,3 +1,11 @@
+/**
+ * @file ArmOffset.hpp
+ * @author Maurits Muijsert (MPW.Muijsert@student.han.nl)
+ * @brief Predefined offsets used for using robots that have a different base position for one or more joints
+ * @version 0.1
+ * @date 2019-03-14
+ * 
+ */
 #ifndef ARM_OFFSET
 #define ARM_OFFSET
 

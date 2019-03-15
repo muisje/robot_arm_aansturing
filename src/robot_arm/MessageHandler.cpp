@@ -1,5 +1,6 @@
 #include "MessageHandler.hpp"
 #include "../shared_lib/Shared.hpp"
+#include <ros/console.h>
 
 MessageHandler::MessageHandler(std::string a_setPose_name, std::string a_setCostumPose_name, std::shared_ptr<Queue> a_queue) : 
                                                                                     setPose_as(setPose_nh, a_setPose_name, boost::bind(&MessageHandler::executePose, this, _1), false),
@@ -22,45 +23,26 @@ MessageHandler::~MessageHandler(void)
 
 void MessageHandler::executePose(const robot_arm_aansturing::setPoseGoalConstPtr &goal)
 {
-    
-    std::cout << "Executing pose" <<std::endl;
-
     if (goal->g_pos == e_poses::PARK)
     {
-        std::cout << "MOVING TO PARK" <<std::endl;
-        //robotArm.gotoPosition(POSITION_PRESET::PARK);
-
-        queue->addToQueue(POSITION_PRESET::PARK, 0, 2300);
+       queue->addToQueue(POSITION_PRESET::PARK, 0, 2000);
     }
     else if (goal->g_pos == e_poses::READY)
     {
-        std::cout << "MOVING TO READY" <<std::endl;
-        //robotArm.gotoPosition(POSITION_PRESET::READY, 0, 2300);
-        queue->addToQueue(POSITION_PRESET::READY, 0, 2300);
-
+        queue->addToQueue(POSITION_PRESET::READY, 0, 2000);
     }
     else if (goal->g_pos == e_poses::STRAIGHT_UP)
     {
-        std::cout << "MOVING TO STRAIGTUP" <<std::endl;
-        //robotArm.gotoPosition(POSITION_PRESET::STRAIGHT_UP, 0, 500);
-        queue->addToQueue(POSITION_PRESET::STRAIGHT_UP, 0, 2300);
-
+        queue->addToQueue(POSITION_PRESET::STRAIGHT_UP, 0, 2000);
     }
     else
     {
-        //ERRROR GOOIEN
+        ROS_WARN("QoS-Warning: not able to move to unsuported preset position");
     }
 
-   // int test = 0;
-    
-
-    // while(test < 1000)
-    // {
-    //     std::cout << test << std::endl;
-    //     setPose_feedback.f_procesStatus = test;
-    //     setPose_as.publishFeedback(setPose_feedback);
-    //     ++test;
-    // }
+    //TODO GIVE FEEDBACK
+    //TODO SET FINAL POSITION WHEN FINISHED
+    ROS_INFO("STATE: FINISHED_MOVING");
     setPose_result.r_finalPose = 1;
     setPose_as.setSucceeded(setPose_result);
 
@@ -69,17 +51,21 @@ void MessageHandler::executePose(const robot_arm_aansturing::setPoseGoalConstPtr
 
 void MessageHandler::executeCostumPose(const robot_arm_aansturing::setCostumPoseGoalConstPtr &goal)
 {
-    std::cout << "Executing someting" << std::endl;
+    std::cout << "Executing custom pose" << std::endl;
 
-    //TODO MOVE ARE TO POSITION BELOW
-    std::cout << goal->g_base << std::endl;
-    std::cout << goal->g_shoulder << std::endl;
-    std::cout << goal->g_elbow << std::endl;
-    std::cout << goal->g_wrist << std::endl;
-    std::cout << goal->g_gripper << std::endl;
-    std::cout << goal->g_wristRotate << std::endl;
+    std::map<e_joint, int16_t> customPosition;
+    customPosition.insert(std::pair<e_joint, int16_t>(e_joint::BASE, goal->g_base));
+    customPosition.insert(std::pair<e_joint, int16_t>(e_joint::SHOULDER, goal->g_shoulder));
+    customPosition.insert(std::pair<e_joint, int16_t>(e_joint::ELBOW, goal->g_elbow));
+    customPosition.insert(std::pair<e_joint, int16_t>(e_joint::WRIST, goal->g_wrist));
+    customPosition.insert(std::pair<e_joint, int16_t>(e_joint::GRIPPER, goal->g_gripper));
+    customPosition.insert(std::pair<e_joint, int16_t>(e_joint::WRIST_ROTATE, goal->g_wristRotate));
+    
+    queue->addToQueue(customPosition, 0, 2000);
 
-    //TODO SET FINAL POSITION
+    //TODO GIVE FEEDBACK
+    //TODO SET FINAL POSITION WHEN FINISHED
+    ROS_INFO("STATE: FINISHED_MOVING");
     setCostumPose_result.r_finalPose = 1;
     setCostumPose_as.setSucceeded(setCostumPose_result);
 }
