@@ -24,15 +24,15 @@ void MessageHandler::executePose(const robot_arm_aansturing::setPoseGoalConstPtr
 {
     if (goal->g_pos == e_poses::PARK)
     {
-       queue->addToQueue(POSITION_PRESET::PARK, 0, 2000);
+       queue->addToQueue(POSITION_PRESET::PARK, 0, 5000);
     }
     else if (goal->g_pos == e_poses::READY)
     {
-        queue->addToQueue(POSITION_PRESET::READY, 0, 2000);
+        queue->addToQueue(POSITION_PRESET::READY, 0, 5000);
     }
     else if (goal->g_pos == e_poses::STRAIGHT_UP)
     {
-        queue->addToQueue(POSITION_PRESET::STRAIGHT_UP, 0, 2000);
+        queue->addToQueue(POSITION_PRESET::STRAIGHT_UP, 0, 5000);
     }
     else
     {

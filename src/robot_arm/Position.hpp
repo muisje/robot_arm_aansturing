@@ -21,12 +21,12 @@ namespace POSITION_PRESET
         (e_joint::WRIST, -80) (e_joint::GRIPPER, 0) (e_joint::WRIST_ROTATE, 0);
 
     const std::map<e_joint, int16_t> READY = boost::assign::map_list_of
-        (e_joint::BASE, 00) (e_joint::SHOULDER, 30) (e_joint::ELBOW, 70)
-        (e_joint::WRIST, -80) (e_joint::GRIPPER, 0) (e_joint::WRIST_ROTATE, 0);
+        (e_joint::BASE, 00) (e_joint::SHOULDER, 40) (e_joint::ELBOW, 95)
+        (e_joint::WRIST, -20) (e_joint::GRIPPER, 0) (e_joint::WRIST_ROTATE, 0);
 
     const std::map<e_joint, int16_t> STRAIGHT_UP = boost::assign::map_list_of
         (e_joint::BASE, 0) (e_joint::SHOULDER, 0) (e_joint::ELBOW, 0)
-        (e_joint::WRIST, -60) (e_joint::GRIPPER, 0) (e_joint::WRIST_ROTATE, 0);
+        (e_joint::WRIST, -10) (e_joint::GRIPPER, 0) (e_joint::WRIST_ROTATE, 0);
     
     const std::map<e_joint, int16_t> IMPOSSIBLE = boost::assign::map_list_of
         (e_joint::BASE, 180) (e_joint::SHOULDER, 0) (e_joint::ELBOW, 0)
