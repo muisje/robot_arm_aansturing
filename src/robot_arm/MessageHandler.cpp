@@ -42,19 +42,12 @@ void MessageHandler::executePose(const robot_arm_aansturing::setPoseGoalConstPtr
         ROS_WARN("QoS-Warning: not able to move to unsuported preset position");
     }
 
-    //TODO GIVE FEEDBACK
-    //TODO SET FINAL POSITION WHEN FINISHED
-    ROS_INFO("STATE: NOT_MOVING");
     setPose_result.r_finalPose = 1;
     setPose_as.setSucceeded(setPose_result);
-
-
 }
 
 void MessageHandler::executeCostumPose(const robot_arm_aansturing::setCostumPoseGoalConstPtr &goal)
 {
-    std::cout << "Executing custom pose" << std::endl;
-
     std::map<e_joint, int16_t> customPosition;
     customPosition.insert(std::pair<e_joint, int16_t>(e_joint::BASE, goal->g_base));
     customPosition.insert(std::pair<e_joint, int16_t>(e_joint::SHOULDER, goal->g_shoulder));
@@ -65,9 +58,6 @@ void MessageHandler::executeCostumPose(const robot_arm_aansturing::setCostumPose
     
     queue->addToQueue(customPosition, 0, 2000);
 
-    //TODO GIVE FEEDBACK
-    //TODO SET FINAL POSITION WHEN FINISHED
-    ROS_INFO("STATE: NOT_MOVING");
     setCostumPose_result.r_finalPose = 1;
     setCostumPose_as.setSucceeded(setCostumPose_result);
 }
