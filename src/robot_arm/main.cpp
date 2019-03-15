@@ -18,7 +18,7 @@ int main(int argc, char **argv)
     ros::start();
 
     std::map<e_joint, Range> jointRanges = boost::assign::map_list_of
-    (e_joint::BASE, Range{-90, 0}) (e_joint::SHOULDER, Range{-30, 90}) (e_joint::ELBOW, Range{0, 90})
+    (e_joint::BASE, Range{-90, 0}) (e_joint::SHOULDER, Range{-30, 90}) (e_joint::ELBOW, Range{0, 135})
     (e_joint::WRIST, Range{-90, 90}) (e_joint::WRIST_ROTATE, Range{-90, 90});
 
 
