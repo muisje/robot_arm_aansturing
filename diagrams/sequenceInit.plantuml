@@ -1,0 +1,19 @@
+@startuml init sequence diagram
+
+participant robot_arm_controller
+participant robot_arm
+actor AL5D
+
+robot_arm_controller -> robot_arm : go to preset position park
+activate robot_arm
+robot_arm -> robot_arm : isInRange
+activate robot_arm
+alt valid position
+    robot_arm -> AL5D : move
+    robot_arm -> robot_arm_controller : position reached
+else not valid position
+    robot_arm -> robot_arm_controller : position not valid
+end
+deactivate robot_arm
+
+@enduml
