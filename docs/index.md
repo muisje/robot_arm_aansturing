@@ -42,15 +42,15 @@ draft
 * [x] PO01
 * [x] PO02
 * [x] PO03
-* [ ] VE01 -
-* [ ] VE02 - M
+* [x] VE01 -
+* [x] VE02 - M
 * [ ] VE03 - deels niet haalbaar (documenteren)
 * [ ] INF01 -
 * [ ] INF02
 * [ ] INF03
 * [ ] EX01
 * [ ] EX02
-* [ ] SY01
+* [x] SY01
 * [ ] SY02
 * [ ] SY03
 * [ ] SY04
