@@ -6,9 +6,9 @@
 #include <ros/ros.h>
 #include <memory>
 
-#define BOUTRATE 115200
+#define BOUTRATE 9600
 #define USB_CONNECTION "/dev/ttyUSB0"
-#define ROBO_ARM_OFFSET ArmOffset::ROBOT_3
+#define ROBO_ARM_OFFSET ArmOffset::ROBOT_1
 #define ROBO_ARM_RANGES Ranges::AL5DRanges
 
 
