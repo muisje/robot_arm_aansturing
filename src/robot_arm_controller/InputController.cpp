@@ -1,9 +1,4 @@
 #include "InputController.hpp"
-#include <boost/thread.hpp>
-
-
-#include <chrono>
-#include <thread>
 
 InputController::InputController()
 {
@@ -47,16 +42,13 @@ struct userInput InputController::getUserInput()
     }
     else
     {
-        std::cout << "User input not supported" << std::endl;
-        //TODO ROS IMPELENT ROS ERROR
+        ROS_WARN("User input not supported");
     }
     return returnValue;
 }
 
-void InputController::sendRequest(struct userInput input)
+void InputController::sendRequest(struct userInput& input)
 {
-    
-
 
     if (input.prefrence == PRE_SET_POSE)
     {
@@ -81,13 +73,11 @@ void InputController::sendRequest(struct userInput input)
         }
         else
         {
-            std::cout << "User input not supported" << std::endl;
-            //TODO ROS IMPELENT ROS ERROR
+            ROS_WARN("User input not supported");
         }
-        std::cout << "Sending goal" << std::endl;
 
         ac.sendGoal(goal);
-        ac.waitForResult(ros::Duration(30.0));
+        ac.waitForResult();
     }
     else if (input.prefrence == COSTUM_POSE)
     {
@@ -108,8 +98,7 @@ void InputController::sendRequest(struct userInput input)
         goal.g_wristRotate = messageValues.wristRotate;
 
         ac.sendGoal(goal);
-
-        ac.waitForResult(ros::Duration(30.0));
+        ac.waitForResult();
     }
     else if (input.prefrence == STOP)
     {
@@ -119,12 +108,10 @@ void InputController::sendRequest(struct userInput input)
         ac.waitForServer();
 
         robot_arm_aansturing::emergencyGoal goal;
-
         goal.emergency = true;
 
         ac.sendGoal(goal);
-
-        ac.waitForResult(ros::Duration(30.0));
+        ac.waitForResult();
     }
 
     
