@@ -3,16 +3,18 @@
 
 package "robot_arm" <<system>>  {
     node "High Level Driver" <<sub system>> {
-        [Controller] 
+        [MessageHandler] 
 
         [AL5D] -UP-> gotoPosition
-        [AL5D] -UP-> getCurrentPosition
         [AL5D] -UP-> stopAllMotorFunctions
+        [AL5D] -UP-> isAtDestination
+        [AL5D] --> getCurrentPosition
 
-        [AL5D] --( move
+        [AL5D] -LEFT-( move
 
-        [Controller] --( gotoPosition
-        [Controller] --( stopAllMotorFunctions
+        [MessageHandler] --( gotoPosition
+        [MessageHandler] --( stopAllMotorFunctions
+        [MessageHandler] --( isAtDestination
     }
     node "Low Level Driver" <<sub system>> {    
         [SSC32U]
@@ -21,9 +23,9 @@ package "robot_arm" <<system>>  {
     [SSC32U] --> setPositionOffset 
 }
 
-[Controller] -UP-> handleInstruction 
+[MessageHandler] -UP-> handleInstruction 
 
-package "robot_arm_controller" <<sub system>>  {
+package "robot_arm_controller" <<system>>  {
 
 [InputController] --( handleInstruction
 
