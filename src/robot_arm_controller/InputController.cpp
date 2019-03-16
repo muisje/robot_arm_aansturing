@@ -9,7 +9,6 @@ InputController::~InputController()
 {
 }
 
-
 struct userInput InputController::getUserInput()
 {
     userInput returnValue;

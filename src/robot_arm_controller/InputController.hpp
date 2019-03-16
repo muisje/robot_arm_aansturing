@@ -55,7 +55,6 @@ struct parsStringCostumPose
 
         if (values.size() == 7)
         {
-            
             base = values.at(0);
             shoulder = values.at(1);
             elbow = values.at(2);
@@ -86,7 +85,6 @@ struct parsStringPose
             if (input[idx] == ',')
             {
                 std::string substr = input.substr(previousIdx, idx - previousIdx);
-                std::cout << substr << std::endl;
                 if (substr == "p" || substr == "P")
                 {
                     pose = e_poses::PARK;
@@ -128,7 +126,6 @@ class InputController
      * @param input - A struct with the user input info
      */
     void sendRequest(struct userInput& input);
-
 };
 
 #endif
