@@ -16,7 +16,9 @@ User -> Controller : move gripper
 User is WAITING
 
 @+0
-Controller -> System : move gripper
+Controller -> System@+703 : send request (424..703 ms)
+
+@+703
 System is MOVING
 
 @+0
@@ -31,11 +33,9 @@ AL5D@+0 <-> @+630 : { 630 ms at 4.8v & 480 ms at 6.0v for 180*s }
 
 @+630
 AL5D IS NOT_MOVING
-System -> Controller : reached position
 System IS NOT_MOVING
 
 @+0
-Controller -> User : reached position
 User is HAPPY
 
 

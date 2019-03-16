@@ -12,7 +12,9 @@ Set position ofset with pulse -100 to 100 is around 15 degrees
 
 map robotarm , ofset per joint
 
-## gripper
+## timing
+
+### gripper
 
 Name: HS-422
 
@@ -29,7 +31,7 @@ bronnen:
 * [lynx motion: al5d](http://www.lynxmotion.com/c-130-al5d.aspx)
 * [ServoDatabase.com: Hitec HS-422 - Deluxe Standard Servo](https://servodatabase.com/servo/hitec/hs-422)
 
-## Serial
+### Serial
 
 9600, 38400, and 115200 bits per second are the standard baud rates
 
@@ -41,6 +43,21 @@ command = #4P2100\r
 72 / 38400 = 0.001875 seconden voor het commando over serial @ 38400 baud
 72 / 115200 = 0.000625 seconden voor het commando over serial @ 115200 baud
 
-## Onbekend
+### robot_arm_controller
+
+controller.sendRequest(input);
+
+min = 424 ms max is 703 ms
+
+### robot_arm
+
+robotArm.gotoPosition took 0 milliseconds
+
+#### opmerkingen
+  
+* Lijkt slomer te worden na lang gebruik. Komt hoogstwaarschijnlijk door de while loop.
+* fans gaan behoorlijk blazen.
+
+### Onbekend
 
 * verwerkingstijd van SCC32U voor commando's
