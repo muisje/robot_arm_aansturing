@@ -14,14 +14,14 @@ note "Translates the instructions to the protocol of the used servo controller o
 note "{Instructions will be added to a queue. \nThe queue can be emptied. \nThe queue will be emptied on emergency stop.}" AS note_QoS_EXTRA_queue
 
 package command_robot_arm <<system>> {
-    user -- (command custom position)
-    user -- (command preset position)
-    user -- (command emergency stop)
+    user -- (command position)
+    user - (command emergency stop)
+    
+    (command position) .> (command custom position) : <<extend>>
+    (command position) .> (command preset position) : <<extend>>
 
-    (command emergency stop) -up- note_QoS_SAFETY_emergency_stop
-
-    (command custom position) .- note_QoS_EXTRA_queue
-    (command preset position) .- note_QoS_EXTRA_queue
+    (command emergency stop) .up- note_QoS_SAFETY_emergency_stop
+    (command position) .- note_QoS_EXTRA_queue
 }
 
 
@@ -30,11 +30,12 @@ package robot_arm <<sub system>> {
     (command preset position) ..> (go to position) : <<include>>
     (command emergency stop) ..> (stop moving) : <<include>>
     (go to position) -- AL5D
-    (stop moving) -- AL5D
-    (init) -- AL5D
+    (stop moving) - AL5D
 
-    (init) -- note_QoS_SAFETY_init
-    (go to position) -- note_QoS_SAFETY_range_of_motion
+    (init) .> (go to position) : <<include>>
+
+    (init) .- note_QoS_SAFETY_init
+    (go to position) .- note_QoS_SAFETY_range_of_motion
 }
 
 command_robot_arm .- note_command_robot_arm
