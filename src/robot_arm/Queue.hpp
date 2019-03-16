@@ -29,6 +29,8 @@ class Queue
     private:
         std::list<armTask> queue; 
         AL5D robotArm;
+        bool standby = true;
+        void setMovingState();
 };
 
 #endif

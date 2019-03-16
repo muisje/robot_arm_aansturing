@@ -27,15 +27,15 @@ void MessageHandler::executePose(const robot_arm_aansturing::setPoseGoalConstPtr
 {
     if (goal->g_pos == e_poses::PARK)
     {
-       queue->addToQueue(POSITION_PRESET::PARK, 0, 5000);
+       queue->addToQueue(POSITION_PRESET::PARK, 0, goal->g_time);
     }
     else if (goal->g_pos == e_poses::READY)
     {
-        queue->addToQueue(POSITION_PRESET::READY, 0, 5000);
+        queue->addToQueue(POSITION_PRESET::READY, 0, goal->g_time);
     }
     else if (goal->g_pos == e_poses::STRAIGHT_UP)
     {
-        queue->addToQueue(POSITION_PRESET::STRAIGHT_UP, 0, 5000);
+        queue->addToQueue(POSITION_PRESET::STRAIGHT_UP, 0, goal->g_time);
     }
     else
     {
@@ -56,7 +56,7 @@ void MessageHandler::executeCostumPose(const robot_arm_aansturing::setCostumPose
     customPosition.insert(std::pair<e_joint, int16_t>(e_joint::GRIPPER, goal->g_gripper));
     customPosition.insert(std::pair<e_joint, int16_t>(e_joint::WRIST_ROTATE, goal->g_wristRotate));
     
-    queue->addToQueue(customPosition, 0, 2000);
+    queue->addToQueue(customPosition, 0, goal->g_time);
 
     setCostumPose_result.r_finalPose = 1;
     setCostumPose_as.setSucceeded(setCostumPose_result);
@@ -65,7 +65,6 @@ void MessageHandler::executeCostumPose(const robot_arm_aansturing::setCostumPose
 
 void MessageHandler::executeEmergency(const robot_arm_aansturing::emergencyGoalConstPtr &goal)
 {
-    std::cout << "Executing emergency" << std::endl;
     queue->emptyQueue();
     emergency_result.succes = true;
     emergency_as.setSucceeded(emergency_result);
