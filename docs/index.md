@@ -1,90 +1,19 @@
-# title
+# Robot arm controller
 
-## afspraken
+..
 
-* HLD berekent positie noodstop op basis van tijd
-* HLD geeft positie feedback op basis van tijd
+## Use Cases
 
-## vragen
+..
 
-* Waar willen we de queu
-  * instruction handler
-* Hoe kunnen we de posities halen als we binnen de range of motion moeten blijven
-  * per gewrichten een min en max
+## Componenten
 
-## todo
+..
 
-* [x] noodstop && feedback positie -M
-* [x] range of motion beperking apendix A
-* [x] meerdere robot armen posities werkend.
-* [x] Servo begrenzing
-* [x] integratie ros met hld robot arm
-* [x] dll lld -M
-* [ ] QoS
-* [x] doxygen
-* [ ] sequence diagram - H
-* [ ] protocol state machine
-* [x] use cases
-* [x] component diagram
-* [ ] state diagram
-* [ ] timing diagram
-* [ ] rosout info
-  * [x] info state
-  * [ ] debug event
-  * [x] warning QoS
-* [x] Costum pos implementeren - M
+![alternative text](http://www.plantuml.com/plantuml/proxy?src=[https://raw.github.com/muisje/robot_arm_aansturing/blob/master/diagrams/component.plantuml])
 
-## REQ
+![oof](http://www.plantuml.com/plantuml/uml/5Sj13i9020NGg-W5ojxBDBGbKym04_Z4wwlxzvxgv-nBEkVZ1bQzY98_sr3SVNH9dk4GntQ6aRNMMoZZ2EoSjZDxeLDza751aYxbaMn5Fx_2_tDDThJDBm00)
 
-### legenda (MoSCoW)
+## etc
 
-* **bold** = must
-* *italic* = should
-* regular = could or would
-
-### Functionaliteit
-
-* [x] **SA01**
-* [x] *SA02*
-* [ ] *SA03* <- timing diagram
-* [x] **PO01**
-* [x] *PO02*
-* [x] PO03
-* [x] **VE01**
-* [x] *VE02*
-* [x] *VE03* - deels niet haalbaar (documenteren)
-* [ ] **INF01**
-  * [x] code
-  * [ ] protocol statemachine
-* [ ] **INF02**
-  * [x] code
-  * [ ] protocol statamachine
-* [x] INF03
-* [x] EX01
-* [ ] EX02
-* [x] **SY01**
-* [ ] *SY02*
-  * [x] compenenten diagram
-  * [ ] beschrijving
-    * [ ] systeem
-    * [ ] interfaces
-    * [ ] poorten
-* [ ] *SY03*
-* [ ] *SY04*
-  * [ ] beschrijving systeem gedrag
-  * [ ] state diagram
-* [x] *US01*
-  * [ ] opstart instialisatie
-    * [ ] sequence diagram
-    * [ ] beschrijving
-* [ ] **US02**
-* [ ] *QS01*
-* [ ] *QS02*
-* [x] **IM01**
-* [x] **IM02**
-* [X] *IM03*
-* [x] IM04
-* [X] **IM05**
-* [x] **IM06**
-* [ ] **DE01**
-* [ ] DE02
+..
