@@ -53,9 +53,13 @@
 * [x] PO03
 * [x] **VE01**
 * [x] *VE02*
-* [ ] *VE03* - deels niet haalbaar (documenteren)
-* [x] **INF01**
+* [x] *VE03* - deels niet haalbaar (documenteren)
+* [ ] **INF01**
+  * [x] code
+  * [ ] protocol statemachine
 * [ ] **INF02**
+  * [x] code
+  * [ ] protocol statamachine
 * [x] INF03
 * [x] EX01
 * [ ] EX02
@@ -70,7 +74,7 @@
 * [ ] *SY04*
   * [ ] beschrijving systeem gedrag
   * [ ] state diagram
-* [ ] *US01*
+* [x] *US01*
   * [ ] opstart instialisatie
     * [ ] sequence diagram
     * [ ] beschrijving
@@ -79,9 +83,9 @@
 * [ ] *QS02*
 * [x] **IM01**
 * [x] **IM02**
-* [X] IM03
+* [X] *IM03*
 * [x] IM04
-* [X] IM05
-* [ ] **IM06** - nog niet gespecificeerd
+* [X] **IM05**
+* [x] **IM06**
 * [ ] **DE01**
 * [ ] DE02
