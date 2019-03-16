@@ -5,6 +5,7 @@ int32 g_elbow
 int32 g_wrist
 int32 g_gripper
 int32 g_wristRotate
+int32 g_time
 
 ---
 #result definition

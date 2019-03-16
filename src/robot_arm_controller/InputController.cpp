@@ -22,14 +22,14 @@ struct userInput InputController::getUserInput()
     {
         returnValue.prefrence = COSTUM_POSE;
 
-        std::cout << " Costum pose selected \n Use the next format to set the costum position: <Base degree>,<Shoulder degree>,<Elbow degree>,<Wrist degree>,<Gripper degree>,<Gripper rotate degree>," << std::endl;
+        std::cout << " Costum pose selected \n Use the next format to set the costum position: <Base degree>,<Shoulder degree>,<Elbow degree>,<Wrist degree>,<Gripper degree>,<Gripper rotate degree>,<Execute time>," << std::endl;
         getline(std::cin, returnValue.stringInput);
     }
     else if (userInput == "p" || userInput == "P")
     {
         returnValue.prefrence = PRE_SET_POSE;
 
-        std::cout << " Pre set pose selected \n Choose on of the next poses Park(P), Ready(R) or Straight-up(S)" << std::endl;
+        std::cout << " Pre set pose selected \n Choose on of the next poses Park(P),<Execute time>, | Ready(R),<Execute time>, | Straight-up(S),<Execute time>," << std::endl;
         getline(std::cin, returnValue.stringInput);
     }
     else if (userInput == "s" || userInput == "S")
@@ -49,32 +49,19 @@ struct userInput InputController::getUserInput()
 
 void InputController::sendRequest(struct userInput& input)
 {
-
     if (input.prefrence == PRE_SET_POSE)
     {
         actionlib::SimpleActionClient<robot_arm_aansturing::setPoseAction> ac("pose_action", true);
 
         ros::start();
         ac.waitForServer();
-
         robot_arm_aansturing::setPoseGoal goal;
 
-        if (input.stringInput == "p" || input.stringInput == "P")
-        {
-            goal.g_pos = e_poses::PARK;
-        }
-        else if (input.stringInput == "r" || input.stringInput == "R")
-        {
-            goal.g_pos = e_poses::READY;
-        }
-        else if ((input.stringInput == "s" || input.stringInput == "S"))
-        {
-            goal.g_pos = e_poses::STRAIGHT_UP;
-        }
-        else
-        {
-            ROS_WARN("User input not supported");
-        }
+        
+        struct parsStringPose messageValues(input.stringInput);
+
+        goal.g_time = messageValues.time;
+        goal.g_pos = messageValues.pose;
 
         ac.sendGoal(goal);
         ac.waitForResult();
@@ -88,7 +75,7 @@ void InputController::sendRequest(struct userInput& input)
 
         robot_arm_aansturing::setCostumPoseGoal goal;
 
-        struct parsString messageValues(input.stringInput);
+        struct parsStringCostumPose messageValues(input.stringInput);
 
         goal.g_base = messageValues.base;
         goal.g_shoulder = messageValues.shoulder;
@@ -96,6 +83,7 @@ void InputController::sendRequest(struct userInput& input)
         goal.g_wrist = messageValues.wrist;
         goal.g_gripper = messageValues.gripper;
         goal.g_wristRotate = messageValues.wristRotate;
+        goal.g_time = messageValues.time;
 
         ac.sendGoal(goal);
         ac.waitForResult();

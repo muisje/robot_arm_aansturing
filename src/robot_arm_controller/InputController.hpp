@@ -27,7 +27,7 @@ struct userInput
     bool appStatus = true;
 };
 
-struct parsString
+struct parsStringCostumPose
 {
     int base;
     int shoulder;
@@ -35,8 +35,9 @@ struct parsString
     int wrist;
     int gripper;
     int wristRotate;
+    unsigned int time;
 
-    parsString(const std::string &input)
+    parsStringCostumPose(const std::string &input)
     {
         std::vector<int> values;
         std::string subString;
@@ -52,7 +53,7 @@ struct parsString
             }
         }
 
-        if (values.size() == 6)
+        if (values.size() == 7)
         {
             base = values.at(0);
             shoulder = values.at(1);
@@ -60,11 +61,54 @@ struct parsString
             wrist = values.at(3);
             gripper = values.at(4);
             wristRotate = values.at(5);
+            time = values.at(6);
+            
         }
         else
         {
             ROS_WARN("User input not supported");
         }
+    }
+};
+
+struct parsStringPose
+{
+    short pose;
+    unsigned int time;
+
+    parsStringPose(const std::string &input)
+    {
+        std::vector<int> values;
+        std::string subString;
+        unsigned int previousIdx = 0;
+
+        for (unsigned int idx = 0; idx < input.size(); ++idx)
+        {
+            if (input[idx] == ',')
+            {
+                std::string substr = input.substr(previousIdx, idx - previousIdx);
+
+                if (substr == "p" || substr == "P")
+                {
+                    pose = e_poses::PARK;
+                }
+                else if (substr == "r" || substr == "R")
+                {
+                    pose = e_poses::READY;
+                }
+                else if ((substr == "s" || substr == "S"))
+                {
+                    pose = e_poses::STRAIGHT_UP;
+                }
+                else
+                {
+                    std::cout << "substr" << substr <<std::endl;
+                    time = std::stoi(substr);
+                }
+                previousIdx = idx + 1;
+            }
+        }
+
     }
 };
 

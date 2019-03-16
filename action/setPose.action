@@ -1,5 +1,6 @@
 #goal definition
 int32 g_pos
+int32 g_time
 
 ---
 #result definition

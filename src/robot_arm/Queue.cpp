@@ -21,13 +21,12 @@ void Queue::addToQueue(const std::map<e_joint, int16_t>& s_position, const uint1
 
 void Queue::checkQueue()
 {
+    setMovingState();
+
     while(queue.size() > 0 && robotArm.isAtDestination())
     {
         if(robotArm.gotoPosition(queue.front().s_position, queue.front().s_speed, queue.front().s_time))
-        {
-            ROS_INFO("STATE: MOVING");
             queue.pop_front();
-        }
         else
             ROS_WARN("QoS-Warning: not able to move to position.");
         
@@ -40,4 +39,22 @@ void Queue::emptyQueue()
         queue.pop_front();
 
     robotArm.stopAllMotorFunctions();
+}
+
+void Queue::setMovingState()
+{
+    bool status = robotArm.isAtDestination();
+
+    if(standby != status)
+    {
+        standby = status;
+        
+        if(!status)
+            ROS_INFO("STATE: MOVING");
+        else
+            ROS_INFO("STATE: STANDBY");
+            
+        
+    }
+   
 }
