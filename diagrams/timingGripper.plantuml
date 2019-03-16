@@ -1,9 +1,14 @@
 @startuml timing diagram gripper
+Title Timing diagram gripper
 robust "Robot arm AL5D" as AL5D
 robust "Robot arm" as System
 robust "Robot arm controller" as Controller
 concise "User" as User
 scale 50 as 50 pixels
+
+legend
+time in ms
+end legend
 
 @0
 AL5D is NOT_MOVING
