@@ -1,8 +1,14 @@
 @startuml timing diagram gripper
+Title Timing diagram gripper
 robust "Robot arm AL5D" as AL5D
 robust "Robot arm" as System
 robust "Robot arm controller" as Controller
 concise "User" as User
+scale 50 as 50 pixels
+
+legend
+time in ms
+end legend
 
 @0
 AL5D is NOT_MOVING
@@ -10,25 +16,31 @@ System is NOT_MOVING
 Controller is STANDBY
 User is IDLE
 
-@+100
+@0
 User -> Controller : move gripper
 User is WAITING
 
-@+100
-Controller -> System : move gripper
+@+0
+Controller -> System@+703 : send request (424..703 ms)
+
+@+703
 System is MOVING
 
-@+100
-System -> AL5D : move servo of gripper
-AL5D IS MOVING
+@+0
+System -> AL5D@+75 : command move gripper{75 ms at 9600 baud, 18.75 ms at 38400 baud, 6.25 ms at 115200 baud}
 
-@+1000
+@+75
+AL5D@+0 <-> @+20 : {20 ms to receive a signal}
+
+@+20
+AL5D IS MOVING
+AL5D@+0 <-> @+630 : { 630 ms at 4.8v & 480 ms at 6.0v for 180*s }
+
+@+630
 AL5D IS NOT_MOVING
-System -> Controller : reached position
 System IS NOT_MOVING
 
-@+100
-Controller -> User : reached position
+@+0
 User is HAPPY
 
 

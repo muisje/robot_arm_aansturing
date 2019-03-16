@@ -1,6 +1,5 @@
 # title
 
-
 ## afspraken
 
 * HLD berekent positie noodstop op basis van tijd
