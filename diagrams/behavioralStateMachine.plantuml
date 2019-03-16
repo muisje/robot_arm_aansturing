@@ -1,7 +1,7 @@
 @startuml behavioral state machine
 title behavioral state machine robot arm
-[*] --> NOT_MOVING
-NOT_MOVING --> MOVING : gotoPosition [goalPosition = valid]
-MOVING --> NOT_MOVING : done
-MOVING --> NOT_MOVING : emergencyStop emptyQueue/
+[*] --> STAND_BY
+STAND_BY --> MOVING : gotoPosition(goalPosition) == valid
+MOVING --> STAND_BY : goalPosition == position
+MOVING --> STAND_BY : emergencyStop
 @enduml
