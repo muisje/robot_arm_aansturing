@@ -23,6 +23,5 @@ struct PositionInstruction
     boost::posix_time::time_duration duration;
 };
 
-
-#endif // POSITION_INSTRUCTION_HPP    const int max_pulse = 2500;
+#endif // POSITION_INSTRUCTION_HPP
 
