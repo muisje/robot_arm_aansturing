@@ -20,7 +20,9 @@ Controller -> System : move gripper
 System is MOVING
 
 @+0
-System -> AL5D : move servo of gripper
+System -> AL5D@+75 : command move gripper{75 ms at 9600 baud, 18.75 ms at 38400 baud, 6.25 ms at 115200 baud}
+
+@+75
 AL5D@+0 <-> @+20 : {20 ms to receive a signal}
 
 @+20

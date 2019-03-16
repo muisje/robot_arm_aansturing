@@ -18,8 +18,7 @@ Name: HS-422
 
 Speed: 4.8V: 0.21 sec/60°
 6.0V: 0.16 sec/60°
-
-
+Pulse Width: 900-2100 µs
 
 worst_case_min = 180 / 60 * 0.21 = 0.63 s
 
@@ -29,3 +28,19 @@ bronnen:
 
 * [lynx motion: al5d](http://www.lynxmotion.com/c-130-al5d.aspx)
 * [ServoDatabase.com: Hitec HS-422 - Deluxe Standard Servo](https://servodatabase.com/servo/hitec/hs-422)
+
+## Serial
+
+9600, 38400, and 115200 bits per second are the standard baud rates
+
+command = #4P2100\r
+
+9 characters is 9 bytes is 72 bits
+
+72 / 9600 = 0.0075 seconden voor het commando over serial @ 9600 baud
+72 / 38400 = 0.001875 seconden voor het commando over serial @ 38400 baud
+72 / 115200 = 0.000625 seconden voor het commando over serial @ 115200 baud
+
+## Onbekend
+
+* verwerkingstijd van SCC32U voor commando's
