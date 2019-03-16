@@ -4,17 +4,76 @@ participant robot_arm_controller
 participant robot_arm
 actor AL5D
 
+' note "Use Case: Init \n Scenario preconditions: \n- park position valid (in range) \n-AL5D is connected and turned on" AS note_UC
 
+' note "<<RTAction>>\n { RTduration is < (40, ms)" AS note RT_Action_move
+
+hnote over robot_arm : not_moving
+hnote over robot_arm_controller : ready
 robot_arm_controller -> robot_arm : go to preset position park
+note left 
+    ..Request..
+    <<RTaction>>
+    {RTduration < 703 ms}
+end note
 activate robot_arm
 robot_arm -> robot_arm : isInRange
 activate robot_arm
 alt valid position
+    hnote over robot_arm : moving
     robot_arm -> AL5D : move
+    note right
+        ..Serial..
+        <<RTAction>>
+        {RTduration is < (40, ms)
+        (without defining speed or time with the command send.)
+        ..Servo..
+        Specifications of servi that are joints of the AL5D robot arm.
+        --Base--
+        Servo: HS-485HB
+        Speed:
+        * 4.8V: 0.22 sec/60°
+        * 6.0V: 0.18 sec/60°
+        Rotational Range: 60°
+        --Shoulder--
+        Servo: HS-805BB
+        Speed: 	
+        * 4.8V: 0.19 sec/60°
+        * 6.0V: 0.14 sec/60°
+        Rotational Range: 180°
+        --Elbow--
+        Servo: HS-755HB
+        Speed: 	
+        * 4.8V: 0.28 sec/60°
+        * 6.0V: 0.23 sec/60°
+        Rotational Range: 180°
+        --Wrist--
+        Servo: HS-645MG
+        Speed: 	
+        * 4.8V: 0.24 sec/60°
+        * 6.0V: 0.20 sec/60°  
+        Rotational Range: 180° 
+        --Gripper--
+        Servo: HS-422
+        Speed: 	
+        * 4.8V: 0.21 sec/60°
+        * 6.0V: 0.16 sec/60°
+        Rotational Range: 180° 
+    end note
     robot_arm -> robot_arm_controller : position reached
 else not valid position
     robot_arm -> robot_arm_controller : position not valid
 end
 deactivate robot_arm
+hnote over robot_arm : not_moving
+
+
+
+legend
+    Use Case: Init 
+    Scenario preconditions:
+    * Park position is valid (in range) 
+    * AL5D is connected and turned on
+end legend
 
 @enduml

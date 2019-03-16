@@ -70,3 +70,10 @@ robotArm.gotoPosition took 0 milliseconds
 ### Onbekend
 
 * verwerkingstijd van SCC32U voor commando's
+
+
+
+https://servodatabase.com/servo/hitec/hs-485hb
+https://servodatabase.com/servo/hitec/hs-805bb
+https://servodatabase.com/servo/hitec/hs-755hb
+https://servodatabase.com/servo/hitec/hs-645mg
