@@ -4,6 +4,7 @@ participant robot_arm_controller
 participant robot_arm
 actor AL5D
 
+
 robot_arm_controller -> robot_arm : go to preset position park
 activate robot_arm
 robot_arm -> robot_arm : isInRange
