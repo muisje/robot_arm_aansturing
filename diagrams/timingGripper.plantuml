@@ -3,6 +3,7 @@ robust "Robot arm AL5D" as AL5D
 robust "Robot arm" as System
 robust "Robot arm controller" as Controller
 concise "User" as User
+scale 50 as 50 pixels
 
 @0
 AL5D is NOT_MOVING
@@ -10,24 +11,28 @@ System is NOT_MOVING
 Controller is STANDBY
 User is IDLE
 
-@+100
+@0
 User -> Controller : move gripper
 User is WAITING
 
-@+100
+@+0
 Controller -> System : move gripper
 System is MOVING
 
-@+100
+@+0
 System -> AL5D : move servo of gripper
-AL5D IS MOVING
+AL5D@+0 <-> @+20 : {20 ms to receive a signal}
 
-@+1000
+@+20
+AL5D IS MOVING
+AL5D@+0 <-> @+630 : { 630 ms at 4.8v & 480 ms at 6.0v for 180*s }
+
+@+630
 AL5D IS NOT_MOVING
 System -> Controller : reached position
 System IS NOT_MOVING
 
-@+100
+@+0
 Controller -> User : reached position
 User is HAPPY
 
