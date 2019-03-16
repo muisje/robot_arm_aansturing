@@ -1,23 +1,44 @@
 @startuml Use Case Diagram AL5D robot arm controller
+title Use Case Diagram AL5D robot arm controller
+
 left to right direction
 actor user
 actor AL5D <<internal>>
 
-title Use Case Diagram AL5D robot arm controller
+note "{Range of motion is allowed between specified ranges for each servo. \nExeedance of these ranges is not.}" AS note_QoS_SAFETY_range_of_motion
+note "{Arm will stop as fast as possible. \nCurrent action and actions to do will be cancelled.}" AS note_QoS_SAFETY_emergency_stop
+note "{By turning on the software it will move guaranteed to the park position. \nIt will go as fast as possible to the position because the robot arm doesn't know it position yet.}" AS note_QoS_SAFETY_init
+
+note "Handles user instructions to command the robot arm" AS note_command_robot_arm
+note "Translates the instructions to the protocol of the used servo controller of AL5D" AS note_robot_arm
+note "{Instructions will be added to a queue. \nThe queue can be emptied. \nThe queue will be emptied on emergency stop.}" AS note_QoS_EXTRA_queue
 
 package command_robot_arm <<system>> {
-    note "Handles user instructions to command the robot arm" AS note_1
-    user -- (command custom position)
-    user -- (command preset position)
-    user -- (command emergency stop)
+    user -- (command position)
+    user - (command emergency stop)
+    
+    (command position) .> (command custom position) : <<extend>>
+    (command position) .> (command preset position) : <<extend>>
+
+    (command emergency stop) .up- note_QoS_SAFETY_emergency_stop
+    (command position) .- note_QoS_EXTRA_queue
 }
 
+
 package robot_arm <<sub system>> {
-    note "Translates the instructions to the protocol of the used servo controller of AL5D" AS note_2
-    (command custom position) ..> (Go to position) : <<include>>
-    (command preset position) ..> (Go to position) : <<include>>
+    (command custom position) ..> (go to position) : <<include>>
+    (command preset position) ..> (go to position) : <<include>>
     (command emergency stop) ..> (stop moving) : <<include>>
-    (Go to position) -- AL5D
-    (stop moving) -- AL5D
+    (go to position) -- AL5D
+    (stop moving) - AL5D
+
+    (init) .> (go to position) : <<include>>
+
+    (init) .- note_QoS_SAFETY_init
+    (go to position) .- note_QoS_SAFETY_range_of_motion
 }
+
+command_robot_arm .- note_command_robot_arm
+robot_arm .- note_robot_arm
+
 @enduml

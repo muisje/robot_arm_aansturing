@@ -1,8 +1,6 @@
 #ifndef QUEUE_HPP
 #define QUEUE_HPP
 
-#include <iostream>
-#include <queue> 
 #include <map>
 #include "Joint.hpp"
 #include "AL5D.hpp"
@@ -18,7 +16,6 @@ struct armTask
 class Queue
 {
     public:
-
         Queue(AL5D &a_robotArm);
         ~Queue();
 

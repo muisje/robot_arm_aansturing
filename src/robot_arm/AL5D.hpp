@@ -17,7 +17,6 @@
 #include "Range.hpp"
 #include <map>
 
-
 class AL5D
 {
 private: 

@@ -1,15 +1,13 @@
 #include "InputController.hpp"
+#include <ros/console.h>
 
 InputController::InputController()
 {
-    
 }
 
 InputController::~InputController()
 {
-
 }
-
 
 struct userInput InputController::getUserInput()
 {
@@ -42,7 +40,7 @@ struct userInput InputController::getUserInput()
     }
     else
     {
-        ROS_WARN("User input not supported");
+        ROS_WARN("QoS-Warning: User input not supported");
     }
     return returnValue;
 }
@@ -51,14 +49,16 @@ void InputController::sendRequest(struct userInput& input)
 {
     if (input.prefrence == PRE_SET_POSE)
     {
+        ROS_DEBUG("EVENT: sending request[preset pose]");
         actionlib::SimpleActionClient<robot_arm_aansturing::setPoseAction> ac("pose_action", true);
 
         ros::start();
         ac.waitForServer();
         robot_arm_aansturing::setPoseGoal goal;
 
-        
         struct parsStringPose messageValues(input.stringInput);
+
+        //! maybe check if messages values are correctly parsed?
 
         goal.g_time = messageValues.time;
         goal.g_pos = messageValues.pose;
@@ -68,6 +68,7 @@ void InputController::sendRequest(struct userInput& input)
     }
     else if (input.prefrence == COSTUM_POSE)
     {
+        ROS_DEBUG("EVENT: sending request[custom pose]");
         actionlib::SimpleActionClient<robot_arm_aansturing::setCostumPoseAction> ac("costum_pose_action", true);
 
         ros::start();
@@ -76,6 +77,8 @@ void InputController::sendRequest(struct userInput& input)
         robot_arm_aansturing::setCostumPoseGoal goal;
 
         struct parsStringCostumPose messageValues(input.stringInput);
+
+        //! maybe check if messages values are correctly parsed?
 
         goal.g_base = messageValues.base;
         goal.g_shoulder = messageValues.shoulder;
@@ -90,6 +93,7 @@ void InputController::sendRequest(struct userInput& input)
     }
     else if (input.prefrence == STOP)
     {
+        ROS_DEBUG("EVENT: sending request[emergency stop]");
         actionlib::SimpleActionClient<robot_arm_aansturing::emergencyAction> ac("emergency", true);
 
         ros::start();
@@ -101,6 +105,12 @@ void InputController::sendRequest(struct userInput& input)
         ac.sendGoal(goal);
         ac.waitForResult();
     }
-
-    
+    else if (input.prefrence == DEFAULT)
+    {
+        ROS_WARN("QoS-Warning: default input; no request send.");
+    }
+    else
+    {
+        ROS_WARN("QoS-Warning: unkown input; no request send.");
+    }
 }

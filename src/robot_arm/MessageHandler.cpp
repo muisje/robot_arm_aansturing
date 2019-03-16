@@ -10,8 +10,6 @@ MessageHandler::MessageHandler(std::string a_setPose_name, std::string a_setCost
                                                                                     emergency_as(emergency_nh, a_emergency_name, boost::bind(&MessageHandler::executeEmergency, this, _1), false),
                                                                                     emergency_name(a_emergency_name),
                                                                                     queue(a_queue)
-                                                                                       
-
 {
     setPose_as.start();
     setCostumPose_as.start();
@@ -61,7 +59,6 @@ void MessageHandler::executeCostumPose(const robot_arm_aansturing::setCostumPose
     setCostumPose_result.r_finalPose = 1;
     setCostumPose_as.setSucceeded(setCostumPose_result);
 }
-
 
 void MessageHandler::executeEmergency(const robot_arm_aansturing::emergencyGoalConstPtr &goal)
 {

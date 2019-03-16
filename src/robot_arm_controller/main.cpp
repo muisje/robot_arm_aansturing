@@ -6,6 +6,7 @@
 #include "../shared_lib/Shared.hpp"
 #include "InputController.hpp"
 
+
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "robot_arm_controller");
@@ -19,6 +20,8 @@ int main(int argc, char **argv)
 
         if(input.appStatus)
         {
+            ROS_DEBUG("EVENT: Handling user input");
+
             controller.sendRequest(input);
             input.prefrence = e_userPrefrences::DEFAULT;
         }

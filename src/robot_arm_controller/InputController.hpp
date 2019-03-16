@@ -62,11 +62,10 @@ struct parsStringCostumPose
             gripper = values.at(4);
             wristRotate = values.at(5);
             time = values.at(6);
-            
         }
         else
         {
-            ROS_WARN("User input not supported");
+            ROS_WARN("QoS-Warning: User input not supported.");
         }
     }
 };
@@ -78,7 +77,6 @@ struct parsStringPose
 
     parsStringPose(const std::string &input)
     {
-        std::vector<int> values;
         std::string subString;
         unsigned int previousIdx = 0;
 
@@ -87,7 +85,6 @@ struct parsStringPose
             if (input[idx] == ',')
             {
                 std::string substr = input.substr(previousIdx, idx - previousIdx);
-
                 if (substr == "p" || substr == "P")
                 {
                     pose = e_poses::PARK;
@@ -102,13 +99,11 @@ struct parsStringPose
                 }
                 else
                 {
-                    std::cout << "substr" << substr <<std::endl;
                     time = std::stoi(substr);
                 }
                 previousIdx = idx + 1;
             }
         }
-
     }
 };
 
@@ -131,7 +126,6 @@ class InputController
      * @param input - A struct with the user input info
      */
     void sendRequest(struct userInput& input);
-
 };
 
 #endif

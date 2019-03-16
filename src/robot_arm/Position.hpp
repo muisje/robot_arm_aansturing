@@ -37,5 +37,4 @@ namespace POSITION_PRESET
         (e_joint::WRIST, 0) (e_joint::GRIPPER, 180) (e_joint::WRIST_ROTATE, 0);
 }
 
-
 #endif

@@ -1,4 +1,12 @@
 #define CR 13
+#define MIN_POS -90
+#define MAX_POS 90
+#define MIN_PULSE 500
+#define MAX_PULSE 2500
+#define POS_WIDTH MAX_POS - MIN_POS
+#define PULSE_DIFF MAX_PULSE - MIN_PULSE
+#define ZERO_PULSE round(float(PULSE_DIFF) / 2.0) + MIN_PULSE
+#define PULSE_PER_POS round(float(PULSE_DIFF) / float(POS_WIDTH));
 
 #include "SSC32U.hpp"
 
@@ -17,19 +25,7 @@ SSC32U::~SSC32U()
 
 void SSC32U::move(uint8_t pin, int16_t position, uint16_t speed, uint16_t time)
 {
-    const int min_pos = -90;
-    const int max_pos = 90;
-
-    const int min_pulse = 500;
-    const int max_pulse = 2500;
-
-    int pos_width = max_pos - min_pos;
-    int pulse_diff = max_pulse - min_pulse;
-    int zero_pulse = round(float(pulse_diff) / 2.0) + min_pulse;
-    int pulse_per_pos = round(float(pulse_diff) / float(pos_width));
-
-    uint16_t pulseWidth = zero_pulse + position * pulse_per_pos;
-
+    uint16_t pulseWidth = ZERO_PULSE + position * PULSE_PER_POS;
     sendCommand(pin, pulseWidth, speed, time);
 }
 

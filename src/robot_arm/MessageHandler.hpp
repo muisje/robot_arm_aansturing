@@ -1,20 +1,14 @@
 #ifndef MESSAGEAHNDLER_HPP
 #define MESSAGEAHNDLER_HPP
 
-
-#include "SSC32U.hpp"
 #include "AL5D.hpp"
-
-#include <chrono>
-#include <thread>
-#include <boost/assign/list_of.hpp> // for 'map_list_of()'
-#include <boost/assert.hpp> 
 #include "Queue.hpp"
-
-#include <actionlib/server/simple_action_server.h>
 #include <robot_arm_aansturing/setPoseAction.h>
 #include <robot_arm_aansturing/setCostumPoseAction.h>
 #include <robot_arm_aansturing/emergencyAction.h>
+#include <actionlib/server/simple_action_server.h>
+#include <chrono>
+#include <thread>
 
 
 class MessageHandler

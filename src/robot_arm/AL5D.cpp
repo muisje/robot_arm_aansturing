@@ -52,10 +52,6 @@ std::map<e_joint, int16_t> AL5D::getCurrentPosition()
 
     boost::posix_time::time_duration diff =  boost::posix_time::microsec_clock::local_time() - currentInstruction.startTime;
 
-    #ifdef DEBUG
-    std::cout << to_simple_string(diff) << std::endl; 
-    #endif
-
     if (diff >= currentInstruction.duration)
     {
         //TODO maybe debug already at goal
@@ -65,11 +61,6 @@ std::map<e_joint, int16_t> AL5D::getCurrentPosition()
     {
         double progress = double(diff.total_milliseconds()) / double(currentInstruction.duration.total_milliseconds() ) ;
         
-        #ifdef DEBUG
-        std::cout << "currentInstruction.duration " << to_simple_string(currentInstruction.duration) << std::endl;
-        std::cout << "progress = " << std::to_string(currentInstruction.duration.total_milliseconds()) << " / " << std::to_string(diff.total_milliseconds()) << " = " << std::to_string(progress) << std::endl;
-        #endif
-
         std::map<e_joint, int16_t> currentPosition;
         for (auto const & jointStart : currentInstruction.positionStart)
         {
@@ -102,11 +93,6 @@ bool AL5D::gotoPosition(std::map<e_joint, int16_t> position, uint16_t speed, uin
     this->currentInstruction.startTime = boost::posix_time::microsec_clock::local_time();
     this->currentInstruction.duration = boost::posix_time::milliseconds(time);
     
-    #ifdef DEBUG
-    std::cout << "given time " << std::to_string(time) << std::endl;
-    std::cout << "set current duration: " << to_simple_string(this->currentInstruction.duration) << std::endl;
-    #endif
-
     servoController.move(e_joint::BASE,         getCorrectedJointPosition(e_joint::BASE,            position[e_joint::BASE]),           speed, time);
     servoController.move(e_joint::SHOULDER,     getCorrectedJointPosition(e_joint::SHOULDER,        position[e_joint::SHOULDER]),       speed, time);
     servoController.move(e_joint::ELBOW,        getCorrectedJointPosition(e_joint::ELBOW,           position[e_joint::ELBOW]),          speed, time);
