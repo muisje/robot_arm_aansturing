@@ -11,12 +11,12 @@ date: 17-04-2019
 
 ![AL5D robot arm](picture.jpg){width=40%}
 
-    Versie : 1
-    Datum : 17-04-2019
-    Klas: ITA-WoR-A-f
-    Vak: I-WOR World 18/19 S2
-    Docent: Jorg Visch
-    Studenten:
+    Versie      : 1
+    Datum       : 17-04-2019
+    Klas        : ITA-WoR-A-f
+    Vak         : I-WOR World 18/19 S2
+    Docent      : Jorg Visch
+    Studenten   :
         David Hendrik Nusselder (584310)
         Maurits Muijsert (585468)
 
