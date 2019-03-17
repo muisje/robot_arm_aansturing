@@ -2,13 +2,10 @@
 
 ## Compile
 
-From root:
+From root catkin workspace:
 
 ```
-mkdir build
-cd build
-cmake ../src
-make
+catkin_make
 ```
 
 ## Documenation
@@ -18,6 +15,7 @@ make
 
 ## Building documentation
 
+From package robot_arm_aansturing root:
 ```
 cd docs
 pandoc -N --variable mainfont="Palatino" --variable sansfont="Helvetica" --variable monofont="Menlo" --variable fontsize=12pt --variable version=2.0 doc.md -o doc.pdf
