@@ -38,6 +38,38 @@ In het Component diagram beschrijven we de verschillende componenten in het syst
 
 ![Component diagram](http://www.plantuml.com/plantuml/png/5SrFIuP04CVn-_Cgwj3LXQA485BwSqcAA0DFCgw3RhixQpEp2htwH-5t_7tuLgB0ccCuNJgo8O-OELpCgelS6yEm5PFJEGzPa6qYHTB2fcXYTlABXjEGj0UEFG29PdOqcGYYo6PqC354CVj_INJ89G0TiKTD7kcX1hmkI_hvAb-_iRrxyLtxr3GV-F_vlgxhc_ToQyDVvxVwwkPvtwb26dT-1W00)
 
+### robot_arm_controller
+
+...
+
+### robot_arm
+
+...
+
+#### High Level Driver
+
+...
+
+MessageHandler
+
+...
+
+AL5D
+
+...
+
+#### Low Level Driver
+
+...
+
+SSC32U move
+
+...
+
+SSC32U setPositionOffset
+
+...
+
 \clearpage
 
 ## Behavioral state machine
