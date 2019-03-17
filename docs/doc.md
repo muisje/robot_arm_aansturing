@@ -9,7 +9,7 @@ date: 17-04-2019
 
 \centering
 
-![AL5D robot arm](picture.jpg){width=40%}
+![AL5D robot arm](images/picture.png){width=40%}
 
     Versie      : 1
     Datum       : 17-04-2019
@@ -102,3 +102,21 @@ In het onderstaande timings diagram wordt het scenario weergegeven van de aanstu
 Het sequence diagram is gemaakt ter ondersteuning voor het Timing diagram. Bij dit diagram gaan wij dieper in op de verschillende functie aanroepingen en de Alt/if eisen. Daarnaast beschrijven wij met behulp van notities de functionele eisen van de vrijheidsgraden.
 
 ![Sequence diagram init](http://www.plantuml.com/plantuml/png/5SrDImCn483XUt-57hnkm0yAWjY283dq8AAKNi8qEwHnaydkV13qrxk5z_hox4I1rMhPt6QAnKOqBZSNrLcUdMFeGyfwiRC9ScoaI3h4LbsrB3_ek9sR1k0Q04ZKE5Do5KIHtPWXCLHnWeiXHVIKTPWBqDLxrJOXlUm1xxVRhu_Qq-bq-En_nzz7FV9x-FRcS_2JFCMo77pVtpsyhMrsIEEw_mC0)
+
+\clearpage
+
+## Bijlage
+
+### Range of motion
+
+Beperking van gewrichten:
+
+![Range of motion tabel](images/range_of_motion.png){width=50%}
+
+\clearpage
+
+### Posities
+
+Vooraf bepaalde posities:
+
+![Abstracte afbeelding posities](images/robot_arm_positions.png)

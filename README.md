@@ -1,5 +1,17 @@
 # robot_arm_aansturing
 
+Software for controlling a Lynx AL5D robot arm with ROS.
+
+### Build dependencies
+
+Make sure these are installed first:
+
+    cmake 3.1 and above
+    ROS Melodic Morenia
+    boost
+    c++ 14
+
+
 ## Compile
 
 From root catkin workspace:
@@ -7,6 +19,27 @@ From root catkin workspace:
 ```
 catkin_make
 ```
+
+## Run
+
+Pre condition:
+
+* Ros core is running
+
+### robot_arm_controller
+From root catkin workspace:
+```
+source ./devel/setup.bash
+rosrun robot_arm_aansturing robot_arm
+```
+
+### robot_arm_controller
+From root catkin workspace:
+```
+source ./devel/setup.bash
+rosrun robot_arm_aansturing robot_arm_controller
+```
+
 
 ## Documenation
 
