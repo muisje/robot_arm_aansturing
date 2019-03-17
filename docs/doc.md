@@ -91,7 +91,7 @@ In het Protocol state machine diagram hieronder wordt beschreven wat de pre- en 
 
 ## Timing gripper
 
-..
+Het onderstaande timings diagram weergeeft het scenario van het aansturen van de gripper. Het diagram weergeeft de worst case scenario. Waarbij er geen snelheid of tijd is gespecificeerd. Aangegeven in het diagram is daarnaast ook aangegeven wat het effect is van een andere baudrate en voltage van servo voor dit scenario. De eis van de opdracht was om de gripper naar een bepaalde locatie te sturen. Dat moet gebeuren binnen 2.3 seconden. Dit onderstaande diagram toont aan dat het haalbaar is. binnen 1.45 seconden heeft de gripper de bestemming bereikt na het invoeren van de instructie bij de robot arm controller.
 
 ![Timing diagram gripper](http://www.plantuml.com/plantuml/png/5OrDImCn443l_HLwyEX65544iGkYBXIyI3qkqsHCqoQJx7om-_FTmZizUBojAB1QoPlhH3vRGEDyTLHjyk8Smzp5f4Sxc23xIegadQ_55KjoGiVrK7K4BYC0YHedYgw0AB8B2I934QUfhFgJKsl8NSj0b-6RrZFIQmzu_tIh7pBOz_vd3Bjzh7U_Ip_yJL_BwNbtbaUVfq7c_kRXVMMpHGfh_Wy0)
 
