@@ -66,6 +66,6 @@ In het Protocol state machine diagram hieronder wordt beschreven wat de pre en p
 
 ## Init
 
-..
+Het sequence diagram is gemaakt ter ondersteuning voor het Timing diagram. Hierbij gaan we bij dit diagram dieper in op de verschillende functie aanroepingen en de Alt/if eisen. Daarnaast beschrijven we met behulp van notities de functionelen eisen van elke vrijheidsgraden. 
 
 ![Sequence diagram init](http://www.plantuml.com/plantuml/png/5SrDImCn483XUt-57hnkm0yAWjY283dq8AAKNi8qEwHnaydkV13qrxk5z_hox4I1rMhPt6QAnKOqBZSNrLcUdMFeGyfwiRC9ScoaI3h4LbsrB3_ek9sR1k0Q04ZKE5Do5KIHtPWXCLHnWeiXHVIKTPWBqDLxrJOXlUm1xxVRhu_Qq-bq-En_nzz7FV9x-FRcS_2JFCMo77pVtpsyhMrsIEEw_mC0)
