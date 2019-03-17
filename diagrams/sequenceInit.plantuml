@@ -1,5 +1,7 @@
 @startuml init sequence diagram
 
+@title Sequence diagram usecase init
+
 participant robot_arm_controller
 participant robot_arm
 actor AL5D
