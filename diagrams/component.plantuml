@@ -1,14 +1,15 @@
 @startuml Compnent diagram
 
+title Component diagram AL5D robot arm controller
 
 package "robot_arm" <<system>>  {
     node "High Level Driver" <<sub system>> {
         [MessageHandler] 
 
-        [AL5D] -UP-> gotoPosition
-        [AL5D] -UP-> stopAllMotorFunctions
-        [AL5D] -UP-> isAtDestination
-        [AL5D] --> getCurrentPosition
+        [AL5D] -up-> gotoPosition
+        [AL5D] -up-> stopAllMotorFunctions
+        [AL5D] -up-> isAtDestination
+        [AL5D] -> getCurrentPosition
 
         [AL5D] -LEFT-( move
 
@@ -19,14 +20,20 @@ package "robot_arm" <<system>>  {
     node "Low Level Driver" <<sub system>> {    
         [SSC32U]
     }
-    [SSC32U] -> move 
-    [SSC32U] --> setPositionOffset 
+    [SSC32U] -left-> move 
+    [SSC32U] -up-> setPositionOffset 
 }
 
-[MessageHandler] -UP-> handleInstruction 
+' [MessageHandler] -UP-> handleInstruction 
+' [MessageHandler] #-UP-> robot_arm 
+' robot_arm #-- 
 
 package "robot_arm_controller" <<system>>  {
+    [InputController]
+}
 
-[InputController] --( handleInstruction
-
+[InputController] --# robot_arm_controller : ROS Action
+[MessageHandler] --# robot_arm : ROS Action
+robot_arm #-> handleInstruction : ROS Action
+robot_arm_controller #--( handleInstruction : ROS Action
 @enduml
