@@ -40,35 +40,27 @@ In het Component diagram beschrijven we de verschillende componenten in het syst
 
 ### robot_arm_controller
 
-...
+De **robot_arm_controller** package is een ROS Action client applicatie. Die publiceert een action specification. Die bestaat uit een goal, feedback en result. De mogelijke goals zijn *pose*, *custom pose* en *emergency*.
 
 ### robot_arm
 
-...
+De robot_arm package is een ROS action server applicatie. Die voert een action specification uit. Die reageert op *pose*, *custom pose* en *emergency*. Bij pose gaat de robot arm als het mogelijk is naar een *preset pose*. Dat houd in de robot arm naar een vooraf ingestelde positie gaat. De vooraf ingestelde posities zijn **park**, **ready** en **straight_up**. Park is de positie waarin de robot begint.
 
 #### High Level Driver
 
-...
+De **High Level Driver** bestaat uit twee onderdelen. Namelijk het afhandelen van goals (met *MessageHandler*) en het aansturen van de **Low Level Driver** (met *AL5D*). AL5D bied de volgende functionaliteiten aan:
 
-MessageHandler
-
-...
-
-AL5D
-
-...
+* **isAtDestination** : Geeft aan of de arm op de positie van de huidige instructie.
+* **stopAllMotorFunctions** : Zorgt ervoor dat all servo's stoppen met bewegen. Dit betekent dat de robot arm zo snel mogelijk stil staat en dus niet meer beweegt.
+* **getCurrentPosition** : Geeft de huidige positie terug van de AL5D robot arm waarin die zich op dat moment bevindt.
+* **goToPosition** : Zorgt ervoor dat de AL5D robot arm naar een gespeficeerde positie gaat. Positie in graden kan voor elke gewricht en optioneel tijd is te specificeren. De gespecificeerde positie moet binnen de gespecificeerde range liggen van de gewrichten. Als dat niet zo is beweegt de robot arm niet en wordt dit terug gekoppeld dat de opgeven positie niet mogelijk is.
 
 #### Low Level Driver
 
-...
+De **Low Level Driver** handelt communicatie af met de servo controller SCC32U van de AL5D robot arm. De driver bied de volgende functionaliteit aan door middel van commando's sturen over serial naar het servo controller bord:
 
-SSC32U move
-
-...
-
-SSC32U setPositionOffset
-
-...
+* **move** : Stuurt een commando om een servo aan te sturen. Hoek in graden, optionele snelheid in ms en optionele tijd in ms kan gespecificeerd worden. Bij het niet speficeren van snelheid of tijd gaat de servo zo snel mogelijk naar de opgeven positie.
+* **setPositionOffset**: Stuurt een commando naar het servo controller bord aan om de offset van een servo aan te passen. Dit gaat doormiddel van een pulse breedte afwijking wat kan liggen tussen -100 en 100 uS. Dit staat ongeveer gelijk aan 15 graden.
 
 \clearpage
 
@@ -98,6 +90,6 @@ In het Protocol state machine diagram hieronder wordt beschreven wat de pre en p
 
 ## Init
 
-Het sequence diagram is gemaakt ter ondersteuning voor het Timing diagram. Hierbij gaan we bij dit diagram dieper in op de verschillende functie aanroepingen en de Alt/if eisen. Daarnaast beschrijven we met behulp van notities de functionelen eisen van elke vrijheidsgraden. 
+Het sequence diagram is gemaakt ter ondersteuning voor het Timing diagram. Hierbij gaan we bij dit diagram dieper in op de verschillende functie aanroepingen en de Alt/if eisen. Daarnaast beschrijven we met behulp van notities de functionelen eisen van elke vrijheidsgraden.
 
 ![Sequence diagram init](http://www.plantuml.com/plantuml/png/5SrDImCn483XUt-57hnkm0yAWjY283dq8AAKNi8qEwHnaydkV13qrxk5z_hox4I1rMhPt6QAnKOqBZSNrLcUdMFeGyfwiRC9ScoaI3h4LbsrB3_ek9sR1k0Q04ZKE5Do5KIHtPWXCLHnWeiXHVIKTPWBqDLxrJOXlUm1xxVRhu_Qq-bq-En_nzz7FV9x-FRcS_2JFCMo77pVtpsyhMrsIEEw_mC0)
