@@ -26,7 +26,7 @@ In het volgende document wordt de documentatie beschreven van de aansturings int
 
 ## Use Cases
 
-..
+In het Use case diagram worden alle eigenschappen beschreven waarmee de gebruiker kan interacteren. In dit diagram hebben we twee systemen beschreven die elk een applicatie representeren de onderlingen contacten gaan met behulp van Ros Messages, dit kan via 3 ontvanger nodes. De eerste node is voor de emergency stop, de tweede node voor een preset position en de derde voor een custom  position.
 
 ![UCD](http://www.plantuml.com/plantuml/png/3SB1IWCn403Gkr-X1uzkm2YA8BAei7ihzDAUbjdiaAH99jl935lwzUtZFJn5SbaNLCwFGMHjNyOmR9sF4dJMXkmg2P9qhXPJDBOJ6gvpbGcuJ03KH3cIDmMQ89ibWcSepQXRkZK3YPRy8pKXVVU0hnzNdzx2kFkrXqlGRHYKq1wJtO_n9RLtby__drl_RF_kRm00)
 
@@ -34,7 +34,7 @@ In het volgende document wordt de documentatie beschreven van de aansturings int
 
 ## Componenten
 
-..
+In het Component diagram beschrijven we de verschillende componenten in het systeem, hierbij wordt onderscheid gemaakt tussen de verschillende drivers en de subsystemen daarvan. De “getCurrenPosition()” in de High level driver is gemaakt omdat de robotarm zelf geen feedback verzorgt. Deze functie maakt een schatting van de verwachte positie als de robotarm geen problemen ondervindt. Deze functionaliteit is essentieel om er achter te komen of de arm klaar is met zijn taak, hierdoor kan de Queue geïmplementeerd worden.
 
 ![Component diagram](http://www.plantuml.com/plantuml/png/5SrFIuP04CVn-_Cgwj3LXQA485BwSqcAA0DFCgw3RhixQpEp2htwH-5t_7tuLgB0ccCuNJgo8O-OELpCgelS6yEm5PFJEGzPa6qYHTB2fcXYTlABXjEGj0UEFG29PdOqcGYYo6PqC354CVj_INJ89G0TiKTD7kcX1hmkI_hvAb-_iRrxyLtxr3GV-F_vlgxhc_ToQyDVvxVwwkPvtwb26dT-1W00)
 
