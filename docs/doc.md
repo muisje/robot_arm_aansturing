@@ -18,7 +18,9 @@ date: 17-04-2019
 
 # Robot arm controller
 
-inleiding
+##inleiding
+
+In het volgende document wordt de documentatie beschreven van de aansturings interface van de LynxMotion AL5D robot arm. Er wordt in dit document beschreven hoe het systeem in elkaar zit met behulp van een Use case diagram, Component, Behavioral state machine, Protocol state machine , Timings diagram en een Sequence diagram. In dit document zullen we ook nader toelichting geven over de bruikbaarheid van deze arm, hierbij kijken we naar de gestelde eisen in de opdracht.
 
 \clearpage
 
@@ -48,7 +50,7 @@ inleiding
 
 ## Protocol state machine
 
-..
+In het Protocol state machine diagram hieronder wordt beschreven wat de pre en postcondities zijn van elke state verandering van de applicatie. Bij elke transitie wordt er ook beschreven wat de actie is die de transitie activeert. De beiden applicaties hebben onderling contact met de ros Action messages, de gebruikte topic zijn “pose_action”, “costum_pose_action” en "emergency”. De Robotarm controller zal naar de gepaste note een bericht sturen met de gebruikers voorkeur, dit gebeurt in “Send_message”.
 
 ![Protocol state machine](http://www.plantuml.com/plantuml/png/9OrDIyD0443l_HLwy6XM52a8Oei5UqYbMEd1IvbkXksQtPbaFiZVDr9ufmUFjr83CQzbSPif5k_GfTnSp0Pz2K5WQbAsYvzTKIAJ8LaJkORgMNyn29_PJY3r141gBfbIgA264heCIQ1gs0iRHou70yFDrJP30Vh_lXdtIAzhmCVbSdVO7jjf_tFS-VOXVO_lQX_jFVQjzleSo_ZrEQtldZOpYnLID-T_)
 

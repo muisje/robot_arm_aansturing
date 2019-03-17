@@ -8,12 +8,15 @@ state Robot_arm {
 Park_pose -down-> Moving : [armIsConnected()]/
 Ready_pose -down-> Moving : [armIsConnected()]/
 Straight_up_pose -down-> Moving : [armIsConnected()]/
+Costum_pose -down-> Moving : [armIsConnected()]/
+
 
 Moving -left-> Standby : [armIsMoving()]/[armIsAtPos()]
 
 Standby --> Park_pose : setPose-action/
 Standby --> Ready_pose : setPose-action/
 Standby --> Straight_up_pose : setPose-action/
+Standby --> Costum_pose : costum-pose-action/
 
 Moving --> Emergency_stop : emergency-action/[queueIsEmpty() && !armIsMoving()]
 Emergency_stop --> Standby
