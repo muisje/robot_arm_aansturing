@@ -43,7 +43,7 @@ In het Use Case Diagram worden alle eigenschappen beschreven waarmee de gebruike
 
 ## Componenten
 
-In het Component Ddiagram beschrijven wij de verschillende componenten in het systeem. Hierbij wordt onderscheid gemaakt tussen de verschillende drivers en de subsystemen. De “getCurrenPosition()” in de High Level Driver is gemaakt, omdat de robotarm zelf geen feedback verzorgt. De functie maakt een schatting van de verwachte positie als de robotarm geen problemen ondervindt. Deze functionaliteit is essentieel om erachter te kunnen komen of de arm klaar is met zijn taak, hierdoor kan de Queue geïmplementeerd worden.
+In het Component Diagram beschrijven wij de verschillende componenten in het systeem. Hierbij wordt onderscheid gemaakt tussen de verschillende drivers en de subsystemen. De “getCurrenPosition()” in de High Level Driver is gemaakt, omdat de robotarm zelf geen feedback verzorgt. De functie maakt een schatting van de verwachte positie als de robotarm geen problemen ondervindt. Deze functionaliteit is essentieel om erachter te kunnen komen of de arm klaar is met zijn taak, hierdoor kan de Queue geïmplementeerd worden.
 
 ![Component diagram](http://www.plantuml.com/plantuml/png/5SrFIuP04CVn-_Cgwj3LXQA485BwSqcAA0DFCgw3RhixQpEp2htwH-5t_7tuLgB0ccCuNJgo8O-OELpCgelS6yEm5PFJEGzPa6qYHTB2fcXYTlABXjEGj0UEFG29PdOqcGYYo6PqC354CVj_INJ89G0TiKTD7kcX1hmkI_hvAb-_iRrxyLtxr3GV-F_vlgxhc_ToQyDVvxVwwkPvtwb26dT-1W00)
 
