@@ -9,7 +9,16 @@ date: 17-04-2019
 
 \centering
 
-![AL5D robot arm](picture.jpg){width=50%}
+![AL5D robot arm](picture.jpg){width=40%}
+
+    Versie : 1
+    Datum : 17-04-2019
+    Klas: ITA-WoR-A-f
+    Vak: I-WOR World 18/19 S2
+    Docent: Jorg Visch
+    Studenten:
+        David Hendrik Nusselder (584310)
+        Maurits Muijsert (585468)
 
 \raggedright
 \clearpage
@@ -18,7 +27,7 @@ date: 17-04-2019
 
 # Robot arm controller
 
-##inleiding
+## Inleiding
 
 In het volgende document wordt de documentatie beschreven van de aansturings interface van de LynxMotion AL5D robot arm. Er wordt in dit document beschreven hoe het systeem in elkaar zit met behulp van een Use case diagram, Component, Behavioral state machine, Protocol state machine , Timings diagram en een Sequence diagram. In dit document zullen we ook nader toelichting geven over de bruikbaarheid van deze arm, hierbij kijken we naar de gestelde eisen in de opdracht.
 
