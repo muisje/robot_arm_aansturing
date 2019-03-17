@@ -8,6 +8,27 @@ From root catkin workspace:
 catkin_make
 ```
 
+## Run
+
+Pre condition:
+
+* Ros core is running
+
+### robot_arm_controller
+From root catkin workspace:
+```
+source ./devel/setup.bash
+rosrun robot_arm_aansturing robot_arm
+```
+
+### robot_arm_controller
+From root catkin workspace:
+```
+source ./devel/setup.bash
+rosrun robot_arm_aansturing robot_arm_controller
+```
+
+
 ## Documenation
 
 * [site](https://muisje.github.io/robot_arm_aansturing/)
