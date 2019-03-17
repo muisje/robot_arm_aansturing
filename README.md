@@ -1,5 +1,17 @@
 # robot_arm_aansturing
 
+Software for controlling a Lynx AL5D robot arm with ROS.
+
+### Build dependencies
+
+Make sure these are installed first:
+
+    cmake 3.1 and above
+    ROS Melodic Morenia
+    boost
+    c++ 14
+
+
 ## Compile
 
 From root catkin workspace:
