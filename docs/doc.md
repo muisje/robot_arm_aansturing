@@ -42,7 +42,7 @@ In het Component diagram beschrijven we de verschillende componenten in het syst
 
 ## Behavioral state machine
 
-..
+In het Behavioral state machine diagram hebben we een abstracte weergaven van de werkelijkheid beschreven. Bij dit gedrag hebben we onderscheid gemaakt tussen “MOVING” en “STAND_BY”. Het systeem zal terug keren naar “STAND_BY” als hij zijn positie heeft bereikt en of de Emergency stop wordt geactiveerd. Pas als het systeem in “STAND_BY” stand staat kan hij een nieuwe opdracht uitvoeren uit de Queue.
 
 ![Behavioral state machine](http://www.plantuml.com/plantuml/png/5SrDIyD0483XUt-57ZoQXOGG4CG6Fmu5GT5xc6p6xDhPsJWV5l-zBRpNbsUl1c9UQ7UTEP8lw49NoMpJkn04JisQBVdiYX8h6x8riPPGFEit1gbpjGcaJ02ivf9v3GNKKCAIOHKe6cPCy9kh07qO6Bv2J9cnsGZu8ZzOFIBVZu3jyDUFNy_J-z3rRTiztl8XRRGSFWbzE6eVwUVjvJJUT4_dTdlavRp_0m00)
 
