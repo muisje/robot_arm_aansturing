@@ -29,7 +29,7 @@ System is MOVING
 @+0
 System -> AL5D@+7.5 : command move gripper{7.5 ms at 9600 baud, 1.875 ms at 38400 baud, 0.625 ms at 115200 baud}
 
-@+75
+@+7.5
 AL5D@+0 <-> @+20 : {20 ms to receive a signal}
 
 @+20
