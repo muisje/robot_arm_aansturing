@@ -28,7 +28,7 @@ alt valid position
         {RTduration is < (40, ms)
         (without defining speed or time with the command send.)
         ..Servo..
-        Specifications of servi that are joints of the AL5D robot arm.
+        Specifications of servo that are joints of the AL5D robot arm.
         --Base--
         Servo: HS-485HB
         Speed:
