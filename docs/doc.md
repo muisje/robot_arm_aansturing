@@ -74,7 +74,7 @@ SSC32U setPositionOffset
 
 ## Behavioral state machine
 
-..
+In het Behavioral state machine diagram hebben we een abstracte weergaven van de werkelijkheid beschreven. Bij dit gedrag hebben we onderscheid gemaakt tussen “MOVING” en “STAND_BY”. Het systeem zal terug keren naar “STAND_BY” als hij zijn positie heeft bereikt en of de Emergency stop wordt geactiveerd. Pas als het systeem in “STAND_BY” stand staat kan hij een nieuwe opdracht uitvoeren uit de Queue.
 
 ![Behavioral state machine](http://www.plantuml.com/plantuml/png/5SrDIyD0483XUt-57ZoQXOGG4CG6Fmu5GT5xc6p6xDhPsJWV5l-zBRpNbsUl1c9UQ7UTEP8lw49NoMpJkn04JisQBVdiYX8h6x8riPPGFEit1gbpjGcaJ02ivf9v3GNKKCAIOHKe6cPCy9kh07qO6Bv2J9cnsGZu8ZzOFIBVZu3jyDUFNy_J-z3rRTiztl8XRRGSFWbzE6eVwUVjvJJUT4_dTdlavRp_0m00)
 
@@ -98,6 +98,6 @@ In het Protocol state machine diagram hieronder wordt beschreven wat de pre en p
 
 ## Init
 
-..
+Het sequence diagram is gemaakt ter ondersteuning voor het Timing diagram. Hierbij gaan we bij dit diagram dieper in op de verschillende functie aanroepingen en de Alt/if eisen. Daarnaast beschrijven we met behulp van notities de functionelen eisen van elke vrijheidsgraden. 
 
 ![Sequence diagram init](http://www.plantuml.com/plantuml/png/5SrDImCn483XUt-57hnkm0yAWjY283dq8AAKNi8qEwHnaydkV13qrxk5z_hox4I1rMhPt6QAnKOqBZSNrLcUdMFeGyfwiRC9ScoaI3h4LbsrB3_ek9sR1k0Q04ZKE5Do5KIHtPWXCLHnWeiXHVIKTPWBqDLxrJOXlUm1xxVRhu_Qq-bq-En_nzz7FV9x-FRcS_2JFCMo77pVtpsyhMrsIEEw_mC0)
