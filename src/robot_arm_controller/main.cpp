@@ -1,4 +1,4 @@
-#define TIMING
+// #define TIMING
 
 #include <ros/ros.h>
 #include <actionlib/client/simple_action_client.h>

@@ -6,9 +6,9 @@
 #include <ros/ros.h>
 #include <memory>
 
-#define BAUD_RATE 115200
+#define BAUD_RATE 9600
 #define USB_CONNECTION "/dev/ttyUSB0"
-#define ROBO_ARM_OFFSET ArmOffset::ROBOT_3
+#define ROBO_ARM_OFFSET ArmOffset::ROBOT_7
 #define ROBO_ARM_RANGES Ranges::AL5DRanges
 
 

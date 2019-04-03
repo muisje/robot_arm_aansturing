@@ -1,4 +1,4 @@
-#define TIMING
+// #define TIMING
 
 #include "Queue.hpp"
 #include <ros/console.h>
